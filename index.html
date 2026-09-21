@@ -98,224 +98,264 @@ body::before {
   top: 0; left: 0; right: 0; bottom: 0;
   background:
     radial-gradient(ellipse 900px 700px at 10% 15%, rgba(90, 0, 140, 0.18) 0%, transparent 65%),
-    radial-gradient(ellipse 700px 900px at 88% 80%, rgba(0, 70, 130, 0.15) 0%, transparent 65%),
-    radial-gradient(ellipse 600px 500px at 55% 50%, rgba(15, 0, 60, 0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 1000px 350px at 70% 10%, rgba(0, 30, 100, 0.10) 0%, transparent 70%),
-    radial-gradient(ellipse 500px 800px at 20% 85%, rgba(70, 0, 110, 0.12) 0%, transparent 65%),
-    radial-gradient(ellipse 400px 400px at 40% 30%, rgba(0, 60, 120, 0.08) 0%, transparent 60%);
-  animation: nebulaPulse 40s ease-in-out infinite;
+    radial-gradient(ellipse 700px 600px at 85% 70%, rgba(0, 50, 120, 0.16) 0%, transparent 65%),
+    radial-gradient(ellipse 500px 400px at 50% 45%, rgba(0, 80, 60, 0.10) 0%, transparent 55%);
+  animation: nebulaPulse 25s ease-in-out infinite;
   pointer-events: none;
   z-index: 0;
 }
 
-/* ======== STARFIELD LAYERS ======== */
-
-/* Layer 1 — small dim stars (260 dots), slow twinkle */
-.stars-small {
-  position: fixed;
-  top: 0; left: 0;
-  width: 1px; height: 1px;
-  background: transparent;
-  box-shadow: 244px 655px 0 0px rgba(255,255,255,0.55), 1049px 1326px 0 0px rgba(255,255,255,0.77), 211px 1811px 0 0px rgba(255,255,255,0.38), 1231px 1273px 0 0px rgba(255,255,255,0.58), 1605px 1173px 0 0px rgba(255,255,255,0.58), 1497px 1591px 0 0px rgba(255,255,255,0.71), 1539px 1584px 0 0px rgba(255,255,255,0.6), 492px 6px 0 0px rgba(255,255,255,0.62), 227px 589px 0 0px rgba(255,255,255,0.74), 921px 24px 0 0px rgba(255,255,255,0.74), 1404px 1005px 0 0px rgba(255,255,255,0.66), 431px 814px 0 0px rgba(255,255,255,0.4), 1904px 731px 0 0px rgba(255,255,255,0.73), 1528px 1052px 0 0px rgba(255,255,255,0.63), 1481px 698px 0 0px rgba(255,255,255,0.3), 1102px 599px 0 0px rgba(255,255,255,0.42), 289px 1796px 0 0px rgba(255,255,255,0.64), 1468px 1183px 0 0px rgba(255,255,255,0.44), 1737px 1456px 0 0px rgba(255,255,255,0.47), 945px 865px 0 0px rgba(255,255,255,0.3), 1825px 1200px 0 0px rgba(255,255,255,0.58), 1777px 239px 0 0px rgba(255,255,255,0.51), 1644px 1537px 0 0px rgba(255,255,255,0.77), 1793px 1006px 0 0px rgba(255,255,255,0.49), 1075px 530px 0 0px rgba(255,255,255,0.76), 1156px 1897px 0 0px rgba(255,255,255,0.84), 1051px 1061px 0 0px rgba(255,255,255,0.73), 1179px 460px 0 0px rgba(255,255,255,0.71), 1676px 101px 0 0px rgba(255,255,255,0.83), 1072px 1817px 0 0px rgba(255,255,255,0.65), 1470px 1275px 0 0px rgba(255,255,255,0.51), 292px 988px 0 0px rgba(255,255,255,0.78), 1741px 1815px 0 0px rgba(255,255,255,0.32), 1436px 936px 0 0px rgba(255,255,255,0.65), 1464px 1904px 0 0px rgba(255,255,255,0.83), 1118px 515px 0 0px rgba(255,255,255,0.59), 1372px 631px 0 0px rgba(255,255,255,0.58), 1325px 1028px 0 0px rgba(255,255,255,0.67), 1649px 1812px 0 0px rgba(255,255,255,0.49), 415px 603px 0 0px rgba(255,255,255,0.75), 19px 68px 0 0px rgba(255,255,255,0.34), 1807px 1224px 0 0px rgba(255,255,255,0.83), 1646px 1071px 0 0px rgba(255,255,255,0.81), 738px 1888px 0 0px rgba(255,255,255,0.37), 1419px 995px 0 0px rgba(255,255,255,0.53), 1571px 1693px 0 0px rgba(255,255,255,0.55), 890px 1143px 0 0px rgba(255,255,255,0.65), 69px 1703px 0 0px rgba(255,255,255,0.42), 938px 1878px 0 0px rgba(255,255,255,0.74), 898px 1412px 0 0px rgba(255,255,255,0.68), 1971px 1056px 0 0px rgba(255,255,255,0.41), 1889px 1977px 0 0px rgba(255,255,255,0.36), 872px 1726px 0 0px rgba(255,255,255,0.69), 1926px 132px 0 0px rgba(255,255,255,0.64), 1850px 1021px 0 0px rgba(255,255,255,0.47), 399px 1531px 0 0px rgba(255,255,255,0.76), 300px 921px 0 0px rgba(255,255,255,0.8), 189px 1px 0 0px rgba(255,255,255,0.52), 1120px 1910px 0 0px rgba(255,255,255,0.75), 1250px 1626px 0 0px rgba(255,255,255,0.37), 248px 1272px 0 0px rgba(255,255,255,0.28), 1120px 1959px 0 0px rgba(255,255,255,0.41), 1552px 1302px 0 0px rgba(255,255,255,0.46), 11px 642px 0 0px rgba(255,255,255,0.65), 1177px 1576px 0 0px rgba(255,255,255,0.81), 1763px 1008px 0 0px rgba(255,255,255,0.66), 1921px 277px 0 0px rgba(255,255,255,0.58), 969px 1205px 0 0px rgba(255,255,255,0.33), 1225px 1795px 0 0px rgba(255,255,255,0.67), 596px 173px 0 0px rgba(255,255,255,0.5), 328px 1915px 0 0px rgba(255,255,255,0.33), 1603px 1874px 0 0px rgba(255,255,255,0.6), 1040px 844px 0 0px rgba(255,255,255,0.48), 305px 1066px 0 0px rgba(255,255,255,0.73), 771px 29px 0 0px rgba(255,255,255,0.83), 798px 1819px 0 0px rgba(255,255,255,0.29), 1708px 711px 0 0px rgba(255,255,255,0.64), 1914px 1577px 0 0px rgba(255,255,255,0.82), 53px 1046px 0 0px rgba(255,255,255,0.54), 1399px 622px 0 0px rgba(255,255,255,0.52), 1872px 249px 0 0px rgba(255,255,255,0.55), 956px 1171px 0 0px rgba(255,255,255,0.62), 350px 316px 0 0px rgba(255,255,255,0.6), 424px 889px 0 0px rgba(255,255,255,0.62), 940px 1226px 0 0px rgba(255,255,255,0.39), 1456px 143px 0 0px rgba(255,255,255,0.58), 70px 401px 0 0px rgba(255,255,255,0.64), 356px 93px 0 0px rgba(255,255,255,0.64), 1907px 1719px 0 0px rgba(255,255,255,0.28), 1778px 1546px 0 0px rgba(255,255,255,0.63), 991px 1457px 0 0px rgba(255,255,255,0.66), 42px 265px 0 0px rgba(255,255,255,0.64), 448px 1609px 0 0px rgba(255,255,255,0.78), 1833px 1960px 0 0px rgba(255,255,255,0.33), 1355px 1730px 0 0px rgba(255,255,255,0.36), 559px 872px 0 0px rgba(255,255,255,0.57), 1778px 162px 0 0px rgba(255,255,255,0.48), 384px 705px 0 0px rgba(255,255,255,0.35), 951px 1020px 0 0px rgba(255,255,255,0.85), 1670px 852px 0 0px rgba(255,255,255,0.42), 363px 668px 0 0px rgba(255,255,255,0.56), 911px 246px 0 0px rgba(255,255,255,0.57), 1075px 1632px 0 0px rgba(255,255,255,0.41), 194px 1737px 0 0px rgba(255,255,255,0.38), 11px 1954px 0 0px rgba(255,255,255,0.31), 931px 1323px 0 0px rgba(255,255,255,0.45), 1117px 1605px 0 0px rgba(255,255,255,0.75), 1734px 1373px 0 0px rgba(255,255,255,0.36), 56px 721px 0 0px rgba(255,255,255,0.76), 721px 1151px 0 0px rgba(255,255,255,0.66), 1622px 1103px 0 0px rgba(255,255,255,0.38), 1272px 1467px 0 0px rgba(255,255,255,0.42), 1539px 1164px 0 0px rgba(255,255,255,0.69), 1168px 604px 0 0px rgba(255,255,255,0.59), 1373px 1139px 0 0px rgba(255,255,255,0.33), 1601px 541px 0 0px rgba(255,255,255,0.31), 894px 351px 0 0px rgba(255,255,255,0.31), 124px 1555px 0 0px rgba(255,255,255,0.46), 1644px 380px 0 0px rgba(255,255,255,0.64), 218px 1038px 0 0px rgba(255,255,255,0.44), 1205px 1715px 0 0px rgba(255,255,255,0.29), 1909px 645px 0 0px rgba(255,255,255,0.35), 525px 129px 0 0px rgba(255,255,255,0.26), 1775px 1840px 0 0px rgba(255,255,255,0.79), 527px 849px 0 0px rgba(255,255,255,0.83), 118px 198px 0 0px rgba(255,255,255,0.39), 635px 252px 0 0px rgba(255,255,255,0.31), 1150px 1181px 0 0px rgba(255,255,255,0.84), 1757px 718px 0 0px rgba(255,255,255,0.44), 934px 1244px 0 0px rgba(255,255,255,0.63), 1463px 1260px 0 0px rgba(255,255,255,0.27), 828px 648px 0 0px rgba(255,255,255,0.61), 1217px 948px 0 0px rgba(255,255,255,0.51), 1385px 1799px 0 0px rgba(255,255,255,0.32), 767px 1764px 0 0px rgba(255,255,255,0.55), 1996px 1892px 0 0px rgba(255,255,255,0.4), 598px 1940px 0 0px rgba(255,255,255,0.74), 119px 1507px 0 0px rgba(255,255,255,0.68), 1799px 49px 0 0px rgba(255,255,255,0.42), 677px 594px 0 0px rgba(255,255,255,0.69), 1576px 1639px 0 0px rgba(255,255,255,0.8), 609px 1573px 0 0px rgba(255,255,255,0.5), 1200px 1850px 0 0px rgba(255,255,255,0.26), 1960px 702px 0 0px rgba(255,255,255,0.37), 115px 1478px 0 0px rgba(255,255,255,0.85), 333px 1268px 0 0px rgba(255,255,255,0.32), 77px 258px 0 0px rgba(255,255,255,0.56), 1223px 1327px 0 0px rgba(255,255,255,0.83), 619px 59px 0 0px rgba(255,255,255,0.5), 259px 730px 0 0px rgba(255,255,255,0.5), 773px 491px 0 0px rgba(255,255,255,0.72), 1357px 450px 0 0px rgba(255,255,255,0.71), 376px 1112px 0 0px rgba(255,255,255,0.27), 1469px 1915px 0 0px rgba(255,255,255,0.57), 1137px 813px 0 0px rgba(255,255,255,0.78), 1611px 303px 0 0px rgba(255,255,255,0.39), 34px 567px 0 0px rgba(255,255,255,0.57), 856px 541px 0 0px rgba(255,255,255,0.83), 284px 1934px 0 0px rgba(255,255,255,0.63), 184px 1720px 0 0px rgba(255,255,255,0.36), 78px 1332px 0 0px rgba(255,255,255,0.77), 1688px 1053px 0 0px rgba(255,255,255,0.74), 698px 1297px 0 0px rgba(255,255,255,0.56), 1522px 651px 0 0px rgba(255,255,255,0.28), 1722px 24px 0 0px rgba(255,255,255,0.63), 498px 964px 0 0px rgba(255,255,255,0.28), 455px 1391px 0 0px rgba(255,255,255,0.56), 309px 1899px 0 0px rgba(255,255,255,0.7), 1786px 818px 0 0px rgba(255,255,255,0.67), 738px 1948px 0 0px rgba(255,255,255,0.72), 1151px 1698px 0 0px rgba(255,255,255,0.42), 1764px 412px 0 0px rgba(255,255,255,0.47), 941px 1305px 0 0px rgba(255,255,255,0.52), 1662px 971px 0 0px rgba(255,255,255,0.79), 1380px 1190px 0 0px rgba(255,255,255,0.44), 325px 1287px 0 0px rgba(255,255,255,0.5), 993px 1831px 0 0px rgba(255,255,255,0.25), 726px 1667px 0 0px rgba(255,255,255,0.82), 1072px 1439px 0 0px rgba(255,255,255,0.49), 77px 1309px 0 0px rgba(255,255,255,0.35), 613px 764px 0 0px rgba(255,255,255,0.58), 543px 283px 0 0px rgba(255,255,255,0.68), 207px 1851px 0 0px rgba(255,255,255,0.26), 445px 1741px 0 0px rgba(255,255,255,0.76), 1193px 629px 0 0px rgba(255,255,255,0.59), 1957px 806px 0 0px rgba(255,255,255,0.48), 1973px 1989px 0 0px rgba(255,255,255,0.56), 1320px 1356px 0 0px rgba(255,255,255,0.34), 1042px 215px 0 0px rgba(255,255,255,0.3), 1501px 798px 0 0px rgba(255,255,255,0.45), 536px 636px 0 0px rgba(255,255,255,0.27), 1214px 1357px 0 0px rgba(255,255,255,0.72), 333px 1841px 0 0px rgba(255,255,255,0.43), 1109px 585px 0 0px rgba(255,255,255,0.46), 1993px 796px 0 0px rgba(255,255,255,0.36), 1530px 1290px 0 0px rgba(255,255,255,0.26), 1241px 1327px 0 0px rgba(255,255,255,0.54), 866px 729px 0 0px rgba(255,255,255,0.74), 1848px 1591px 0 0px rgba(255,255,255,0.84), 1101px 350px 0 0px rgba(255,255,255,0.68), 61px 368px 0 0px rgba(255,255,255,0.44), 297px 336px 0 0px rgba(255,255,255,0.27), 239px 1055px 0 0px rgba(255,255,255,0.65), 1443px 1318px 0 0px rgba(255,255,255,0.71), 1725px 768px 0 0px rgba(255,255,255,0.29), 620px 443px 0 0px rgba(255,255,255,0.57), 1228px 1250px 0 0px rgba(255,255,255,0.4), 218px 669px 0 0px rgba(255,255,255,0.54), 1790px 1715px 0 0px rgba(255,255,255,0.69), 781px 538px 0 0px rgba(255,255,255,0.62), 1327px 241px 0 0px rgba(255,255,255,0.46), 1863px 1022px 0 0px rgba(255,255,255,0.32), 1063px 506px 0 0px rgba(255,255,255,0.75), 1400px 1670px 0 0px rgba(255,255,255,0.52), 1199px 707px 0 0px rgba(255,255,255,0.3), 1596px 1998px 0 0px rgba(255,255,255,0.3), 1014px 1594px 0 0px rgba(255,255,255,0.44), 1543px 1356px 0 0px rgba(255,255,255,0.39), 666px 886px 0 0px rgba(255,255,255,0.55), 680px 661px 0 0px rgba(255,255,255,0.79), 1483px 1346px 0 0px rgba(255,255,255,0.76), 826px 643px 0 0px rgba(255,255,255,0.36), 1652px 949px 0 0px rgba(255,255,255,0.38), 1412px 1884px 0 0px rgba(255,255,255,0.46), 1613px 718px 0 0px rgba(255,255,255,0.5), 1646px 1209px 0 0px rgba(255,255,255,0.48), 317px 905px 0 0px rgba(255,255,255,0.7), 1346px 1508px 0 0px rgba(255,255,255,0.33), 549px 674px 0 0px rgba(255,255,255,0.75), 656px 546px 0 0px rgba(255,255,255,0.75), 911px 540px 0 0px rgba(255,255,255,0.34), 1284px 550px 0 0px rgba(255,255,255,0.39), 1992px 294px 0 0px rgba(255,255,255,0.59), 253px 549px 0 0px rgba(255,255,255,0.43), 939px 1297px 0 0px rgba(255,255,255,0.49), 45px 1126px 0 0px rgba(255,255,255,0.68), 1381px 839px 0 0px rgba(255,255,255,0.45), 1391px 1572px 0 0px rgba(255,255,255,0.8), 1861px 1389px 0 0px rgba(255,255,255,0.76), 1952px 1723px 0 0px rgba(255,255,255,0.65), 1120px 1059px 0 0px rgba(255,255,255,0.38), 722px 1328px 0 0px rgba(255,255,255,0.45), 1891px 819px 0 0px rgba(255,255,255,0.68), 22px 547px 0 0px rgba(255,255,255,0.59), 517px 268px 0 0px rgba(255,255,255,0.45), 1320px 1253px 0 0px rgba(255,255,255,0.5), 1594px 1643px 0 0px rgba(255,255,255,0.54), 1822px 990px 0 0px rgba(255,255,255,0.45), 77px 1551px 0 0px rgba(255,255,255,0.38), 248px 1354px 0 0px rgba(255,255,255,0.76), 551px 669px 0 0px rgba(255,255,255,0.26), 429px 1620px 0 0px rgba(255,255,255,0.52), 568px 1276px 0 0px rgba(255,255,255,0.63), 162px 1139px 0 0px rgba(255,255,255,0.67), 1104px 1575px 0 0px rgba(255,255,255,0.26), 196px 320px 0 0px rgba(255,255,255,0.45), 450px 1932px 0 0px rgba(255,255,255,0.53), 1242px 1379px 0 0px rgba(255,255,255,0.35), 634px 173px 0 0px rgba(255,255,255,0.59), 1458px 1069px 0 0px rgba(255,255,255,0.66);
-  animation: twinkleA 6s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 0;
-}
-.stars-small::after {
+/* Star field layer */
+body::after {
   content: '';
-  position: absolute;
-  top: 2000px; left: 0;
-  width: 1px; height: 1px;
-  background: transparent;
-  box-shadow: 244px 655px 0 0px rgba(255,255,255,0.55), 1049px 1326px 0 0px rgba(255,255,255,0.77), 211px 1811px 0 0px rgba(255,255,255,0.38), 1231px 1273px 0 0px rgba(255,255,255,0.58), 1605px 1173px 0 0px rgba(255,255,255,0.58), 1497px 1591px 0 0px rgba(255,255,255,0.71), 1539px 1584px 0 0px rgba(255,255,255,0.6), 492px 6px 0 0px rgba(255,255,255,0.62), 227px 589px 0 0px rgba(255,255,255,0.74), 921px 24px 0 0px rgba(255,255,255,0.74), 1404px 1005px 0 0px rgba(255,255,255,0.66), 431px 814px 0 0px rgba(255,255,255,0.4), 1904px 731px 0 0px rgba(255,255,255,0.73), 1528px 1052px 0 0px rgba(255,255,255,0.63), 1481px 698px 0 0px rgba(255,255,255,0.3), 1102px 599px 0 0px rgba(255,255,255,0.42), 289px 1796px 0 0px rgba(255,255,255,0.64), 1468px 1183px 0 0px rgba(255,255,255,0.44), 1737px 1456px 0 0px rgba(255,255,255,0.47), 945px 865px 0 0px rgba(255,255,255,0.3), 1825px 1200px 0 0px rgba(255,255,255,0.58), 1777px 239px 0 0px rgba(255,255,255,0.51), 1644px 1537px 0 0px rgba(255,255,255,0.77), 1793px 1006px 0 0px rgba(255,255,255,0.49), 1075px 530px 0 0px rgba(255,255,255,0.76), 1156px 1897px 0 0px rgba(255,255,255,0.84), 1051px 1061px 0 0px rgba(255,255,255,0.73), 1179px 460px 0 0px rgba(255,255,255,0.71), 1676px 101px 0 0px rgba(255,255,255,0.83), 1072px 1817px 0 0px rgba(255,255,255,0.65), 1470px 1275px 0 0px rgba(255,255,255,0.51), 292px 988px 0 0px rgba(255,255,255,0.78), 1741px 1815px 0 0px rgba(255,255,255,0.32), 1436px 936px 0 0px rgba(255,255,255,0.65), 1464px 1904px 0 0px rgba(255,255,255,0.83), 1118px 515px 0 0px rgba(255,255,255,0.59), 1372px 631px 0 0px rgba(255,255,255,0.58), 1325px 1028px 0 0px rgba(255,255,255,0.67), 1649px 1812px 0 0px rgba(255,255,255,0.49), 415px 603px 0 0px rgba(255,255,255,0.75), 19px 68px 0 0px rgba(255,255,255,0.34), 1807px 1224px 0 0px rgba(255,255,255,0.83), 1646px 1071px 0 0px rgba(255,255,255,0.81), 738px 1888px 0 0px rgba(255,255,255,0.37), 1419px 995px 0 0px rgba(255,255,255,0.53), 1571px 1693px 0 0px rgba(255,255,255,0.55), 890px 1143px 0 0px rgba(255,255,255,0.65), 69px 1703px 0 0px rgba(255,255,255,0.42), 938px 1878px 0 0px rgba(255,255,255,0.74), 898px 1412px 0 0px rgba(255,255,255,0.68), 1971px 1056px 0 0px rgba(255,255,255,0.41), 1889px 1977px 0 0px rgba(255,255,255,0.36), 872px 1726px 0 0px rgba(255,255,255,0.69), 1926px 132px 0 0px rgba(255,255,255,0.64), 1850px 1021px 0 0px rgba(255,255,255,0.47), 399px 1531px 0 0px rgba(255,255,255,0.76), 300px 921px 0 0px rgba(255,255,255,0.8), 189px 1px 0 0px rgba(255,255,255,0.52), 1120px 1910px 0 0px rgba(255,255,255,0.75), 1250px 1626px 0 0px rgba(255,255,255,0.37), 248px 1272px 0 0px rgba(255,255,255,0.28), 1120px 1959px 0 0px rgba(255,255,255,0.41), 1552px 1302px 0 0px rgba(255,255,255,0.46), 11px 642px 0 0px rgba(255,255,255,0.65), 1177px 1576px 0 0px rgba(255,255,255,0.81), 1763px 1008px 0 0px rgba(255,255,255,0.66), 1921px 277px 0 0px rgba(255,255,255,0.58), 969px 1205px 0 0px rgba(255,255,255,0.33), 1225px 1795px 0 0px rgba(255,255,255,0.67), 596px 173px 0 0px rgba(255,255,255,0.5), 328px 1915px 0 0px rgba(255,255,255,0.33), 1603px 1874px 0 0px rgba(255,255,255,0.6), 1040px 844px 0 0px rgba(255,255,255,0.48), 305px 1066px 0 0px rgba(255,255,255,0.73), 771px 29px 0 0px rgba(255,255,255,0.83), 798px 1819px 0 0px rgba(255,255,255,0.29), 1708px 711px 0 0px rgba(255,255,255,0.64), 1914px 1577px 0 0px rgba(255,255,255,0.82), 53px 1046px 0 0px rgba(255,255,255,0.54), 1399px 622px 0 0px rgba(255,255,255,0.52), 1872px 249px 0 0px rgba(255,255,255,0.55), 956px 1171px 0 0px rgba(255,255,255,0.62), 350px 316px 0 0px rgba(255,255,255,0.6), 424px 889px 0 0px rgba(255,255,255,0.62), 940px 1226px 0 0px rgba(255,255,255,0.39), 1456px 143px 0 0px rgba(255,255,255,0.58), 70px 401px 0 0px rgba(255,255,255,0.64), 356px 93px 0 0px rgba(255,255,255,0.64), 1907px 1719px 0 0px rgba(255,255,255,0.28), 1778px 1546px 0 0px rgba(255,255,255,0.63), 991px 1457px 0 0px rgba(255,255,255,0.66), 42px 265px 0 0px rgba(255,255,255,0.64), 448px 1609px 0 0px rgba(255,255,255,0.78), 1833px 1960px 0 0px rgba(255,255,255,0.33), 1355px 1730px 0 0px rgba(255,255,255,0.36), 559px 872px 0 0px rgba(255,255,255,0.57), 1778px 162px 0 0px rgba(255,255,255,0.48), 384px 705px 0 0px rgba(255,255,255,0.35), 951px 1020px 0 0px rgba(255,255,255,0.85), 1670px 852px 0 0px rgba(255,255,255,0.42), 363px 668px 0 0px rgba(255,255,255,0.56), 911px 246px 0 0px rgba(255,255,255,0.57), 1075px 1632px 0 0px rgba(255,255,255,0.41), 194px 1737px 0 0px rgba(255,255,255,0.38), 11px 1954px 0 0px rgba(255,255,255,0.31), 931px 1323px 0 0px rgba(255,255,255,0.45), 1117px 1605px 0 0px rgba(255,255,255,0.75), 1734px 1373px 0 0px rgba(255,255,255,0.36), 56px 721px 0 0px rgba(255,255,255,0.76), 721px 1151px 0 0px rgba(255,255,255,0.66), 1622px 1103px 0 0px rgba(255,255,255,0.38), 1272px 1467px 0 0px rgba(255,255,255,0.42), 1539px 1164px 0 0px rgba(255,255,255,0.69), 1168px 604px 0 0px rgba(255,255,255,0.59), 1373px 1139px 0 0px rgba(255,255,255,0.33), 1601px 541px 0 0px rgba(255,255,255,0.31), 894px 351px 0 0px rgba(255,255,255,0.31), 124px 1555px 0 0px rgba(255,255,255,0.46), 1644px 380px 0 0px rgba(255,255,255,0.64), 218px 1038px 0 0px rgba(255,255,255,0.44), 1205px 1715px 0 0px rgba(255,255,255,0.29), 1909px 645px 0 0px rgba(255,255,255,0.35), 525px 129px 0 0px rgba(255,255,255,0.26), 1775px 1840px 0 0px rgba(255,255,255,0.79), 527px 849px 0 0px rgba(255,255,255,0.83), 118px 198px 0 0px rgba(255,255,255,0.39), 635px 252px 0 0px rgba(255,255,255,0.31), 1150px 1181px 0 0px rgba(255,255,255,0.84), 1757px 718px 0 0px rgba(255,255,255,0.44), 934px 1244px 0 0px rgba(255,255,255,0.63), 1463px 1260px 0 0px rgba(255,255,255,0.27), 828px 648px 0 0px rgba(255,255,255,0.61), 1217px 948px 0 0px rgba(255,255,255,0.51), 1385px 1799px 0 0px rgba(255,255,255,0.32), 767px 1764px 0 0px rgba(255,255,255,0.55), 1996px 1892px 0 0px rgba(255,255,255,0.4), 598px 1940px 0 0px rgba(255,255,255,0.74), 119px 1507px 0 0px rgba(255,255,255,0.68), 1799px 49px 0 0px rgba(255,255,255,0.42), 677px 594px 0 0px rgba(255,255,255,0.69), 1576px 1639px 0 0px rgba(255,255,255,0.8), 609px 1573px 0 0px rgba(255,255,255,0.5), 1200px 1850px 0 0px rgba(255,255,255,0.26), 1960px 702px 0 0px rgba(255,255,255,0.37), 115px 1478px 0 0px rgba(255,255,255,0.85), 333px 1268px 0 0px rgba(255,255,255,0.32), 77px 258px 0 0px rgba(255,255,255,0.56), 1223px 1327px 0 0px rgba(255,255,255,0.83), 619px 59px 0 0px rgba(255,255,255,0.5), 259px 730px 0 0px rgba(255,255,255,0.5), 773px 491px 0 0px rgba(255,255,255,0.72), 1357px 450px 0 0px rgba(255,255,255,0.71), 376px 1112px 0 0px rgba(255,255,255,0.27), 1469px 1915px 0 0px rgba(255,255,255,0.57), 1137px 813px 0 0px rgba(255,255,255,0.78), 1611px 303px 0 0px rgba(255,255,255,0.39), 34px 567px 0 0px rgba(255,255,255,0.57), 856px 541px 0 0px rgba(255,255,255,0.83), 284px 1934px 0 0px rgba(255,255,255,0.63), 184px 1720px 0 0px rgba(255,255,255,0.36), 78px 1332px 0 0px rgba(255,255,255,0.77), 1688px 1053px 0 0px rgba(255,255,255,0.74), 698px 1297px 0 0px rgba(255,255,255,0.56), 1522px 651px 0 0px rgba(255,255,255,0.28), 1722px 24px 0 0px rgba(255,255,255,0.63), 498px 964px 0 0px rgba(255,255,255,0.28), 455px 1391px 0 0px rgba(255,255,255,0.56), 309px 1899px 0 0px rgba(255,255,255,0.7), 1786px 818px 0 0px rgba(255,255,255,0.67), 738px 1948px 0 0px rgba(255,255,255,0.72), 1151px 1698px 0 0px rgba(255,255,255,0.42), 1764px 412px 0 0px rgba(255,255,255,0.47), 941px 1305px 0 0px rgba(255,255,255,0.52), 1662px 971px 0 0px rgba(255,255,255,0.79), 1380px 1190px 0 0px rgba(255,255,255,0.44), 325px 1287px 0 0px rgba(255,255,255,0.5), 993px 1831px 0 0px rgba(255,255,255,0.25), 726px 1667px 0 0px rgba(255,255,255,0.82), 1072px 1439px 0 0px rgba(255,255,255,0.49), 77px 1309px 0 0px rgba(255,255,255,0.35), 613px 764px 0 0px rgba(255,255,255,0.58), 543px 283px 0 0px rgba(255,255,255,0.68), 207px 1851px 0 0px rgba(255,255,255,0.26), 445px 1741px 0 0px rgba(255,255,255,0.76), 1193px 629px 0 0px rgba(255,255,255,0.59), 1957px 806px 0 0px rgba(255,255,255,0.48), 1973px 1989px 0 0px rgba(255,255,255,0.56), 1320px 1356px 0 0px rgba(255,255,255,0.34), 1042px 215px 0 0px rgba(255,255,255,0.3), 1501px 798px 0 0px rgba(255,255,255,0.45), 536px 636px 0 0px rgba(255,255,255,0.27), 1214px 1357px 0 0px rgba(255,255,255,0.72), 333px 1841px 0 0px rgba(255,255,255,0.43), 1109px 585px 0 0px rgba(255,255,255,0.46), 1993px 796px 0 0px rgba(255,255,255,0.36), 1530px 1290px 0 0px rgba(255,255,255,0.26), 1241px 1327px 0 0px rgba(255,255,255,0.54), 866px 729px 0 0px rgba(255,255,255,0.74), 1848px 1591px 0 0px rgba(255,255,255,0.84), 1101px 350px 0 0px rgba(255,255,255,0.68), 61px 368px 0 0px rgba(255,255,255,0.44), 297px 336px 0 0px rgba(255,255,255,0.27), 239px 1055px 0 0px rgba(255,255,255,0.65), 1443px 1318px 0 0px rgba(255,255,255,0.71), 1725px 768px 0 0px rgba(255,255,255,0.29), 620px 443px 0 0px rgba(255,255,255,0.57), 1228px 1250px 0 0px rgba(255,255,255,0.4), 218px 669px 0 0px rgba(255,255,255,0.54), 1790px 1715px 0 0px rgba(255,255,255,0.69), 781px 538px 0 0px rgba(255,255,255,0.62), 1327px 241px 0 0px rgba(255,255,255,0.46), 1863px 1022px 0 0px rgba(255,255,255,0.32), 1063px 506px 0 0px rgba(255,255,255,0.75), 1400px 1670px 0 0px rgba(255,255,255,0.52), 1199px 707px 0 0px rgba(255,255,255,0.3), 1596px 1998px 0 0px rgba(255,255,255,0.3), 1014px 1594px 0 0px rgba(255,255,255,0.44), 1543px 1356px 0 0px rgba(255,255,255,0.39), 666px 886px 0 0px rgba(255,255,255,0.55), 680px 661px 0 0px rgba(255,255,255,0.79), 1483px 1346px 0 0px rgba(255,255,255,0.76), 826px 643px 0 0px rgba(255,255,255,0.36), 1652px 949px 0 0px rgba(255,255,255,0.38), 1412px 1884px 0 0px rgba(255,255,255,0.46), 1613px 718px 0 0px rgba(255,255,255,0.5), 1646px 1209px 0 0px rgba(255,255,255,0.48), 317px 905px 0 0px rgba(255,255,255,0.7), 1346px 1508px 0 0px rgba(255,255,255,0.33), 549px 674px 0 0px rgba(255,255,255,0.75), 656px 546px 0 0px rgba(255,255,255,0.75), 911px 540px 0 0px rgba(255,255,255,0.34), 1284px 550px 0 0px rgba(255,255,255,0.39), 1992px 294px 0 0px rgba(255,255,255,0.59), 253px 549px 0 0px rgba(255,255,255,0.43), 939px 1297px 0 0px rgba(255,255,255,0.49), 45px 1126px 0 0px rgba(255,255,255,0.68), 1381px 839px 0 0px rgba(255,255,255,0.45), 1391px 1572px 0 0px rgba(255,255,255,0.8), 1861px 1389px 0 0px rgba(255,255,255,0.76), 1952px 1723px 0 0px rgba(255,255,255,0.65), 1120px 1059px 0 0px rgba(255,255,255,0.38), 722px 1328px 0 0px rgba(255,255,255,0.45), 1891px 819px 0 0px rgba(255,255,255,0.68), 22px 547px 0 0px rgba(255,255,255,0.59), 517px 268px 0 0px rgba(255,255,255,0.45), 1320px 1253px 0 0px rgba(255,255,255,0.5), 1594px 1643px 0 0px rgba(255,255,255,0.54), 1822px 990px 0 0px rgba(255,255,255,0.45), 77px 1551px 0 0px rgba(255,255,255,0.38), 248px 1354px 0 0px rgba(255,255,255,0.76), 551px 669px 0 0px rgba(255,255,255,0.26), 429px 1620px 0 0px rgba(255,255,255,0.52), 568px 1276px 0 0px rgba(255,255,255,0.63), 162px 1139px 0 0px rgba(255,255,255,0.67), 1104px 1575px 0 0px rgba(255,255,255,0.26), 196px 320px 0 0px rgba(255,255,255,0.45), 450px 1932px 0 0px rgba(255,255,255,0.53), 1242px 1379px 0 0px rgba(255,255,255,0.35), 634px 173px 0 0px rgba(255,255,255,0.59), 1458px 1069px 0 0px rgba(255,255,255,0.66);
-}
-
-/* Layer 2 — medium stars (90 dots), offset twinkle */
-.stars-medium {
   position: fixed;
-  top: 0; left: 0;
-  width: 2px; height: 2px;
-  background: transparent;
-  box-shadow: 1146px 273px 0 1px rgba(255,255,255,0.51), 555px 1924px 0 1px rgba(255,255,255,0.68), 380px 1127px 0 1px rgba(255,255,255,0.85), 474px 1933px 0 1px rgba(255,255,255,0.95), 1348px 1358px 0 1px rgba(255,255,255,0.64), 712px 651px 0 1px rgba(255,255,255,0.78), 523px 1001px 0 1px rgba(255,255,255,0.94), 1719px 513px 0 1px rgba(255,255,255,0.47), 1004px 273px 0 1px rgba(255,255,255,0.46), 1657px 750px 0 1px rgba(255,255,255,0.59), 1547px 955px 0 1px rgba(255,255,255,0.56), 561px 1050px 0 1px rgba(255,255,255,0.91), 820px 623px 0 1px rgba(255,255,255,0.57), 111px 1669px 0 1px rgba(255,255,255,0.68), 133px 1487px 0 1px rgba(255,255,255,0.85), 1355px 1043px 0 1px rgba(255,255,255,0.83), 1569px 1758px 0 1px rgba(255,255,255,0.61), 989px 1263px 0 1px rgba(255,255,255,0.5), 1044px 1996px 0 1px rgba(255,255,255,0.74), 666px 1002px 0 1px rgba(255,255,255,0.62), 696px 738px 0 1px rgba(255,255,255,0.55), 1152px 1769px 0 1px rgba(255,255,255,0.89), 1556px 528px 0 1px rgba(255,255,255,0.98), 1968px 1785px 0 1px rgba(255,255,255,0.74), 1779px 785px 0 1px rgba(255,255,255,0.8), 1896px 1248px 0 1px rgba(255,255,255,0.99), 60px 950px 0 1px rgba(255,255,255,0.58), 879px 1041px 0 1px rgba(255,255,255,0.92), 260px 1053px 0 1px rgba(255,255,255,0.57), 1764px 555px 0 1px rgba(255,255,255,0.88), 1468px 1001px 0 1px rgba(255,255,255,0.53), 1390px 1722px 0 1px rgba(255,255,255,0.92), 745px 1333px 0 1px rgba(255,255,255,0.67), 1261px 1488px 0 1px rgba(255,255,255,0.75), 312px 1243px 0 1px rgba(255,255,255,0.75), 314px 1493px 0 1px rgba(255,255,255,0.53), 1633px 1671px 0 1px rgba(255,255,255,0.89), 1174px 126px 0 1px rgba(255,255,255,0.89), 1773px 71px 0 1px rgba(255,255,255,0.6), 614px 1928px 0 1px rgba(255,255,255,0.9), 286px 548px 0 1px rgba(255,255,255,0.98), 1420px 731px 0 1px rgba(255,255,255,0.52), 345px 383px 0 1px rgba(255,255,255,0.83), 1539px 381px 0 1px rgba(255,255,255,0.82), 848px 1314px 0 1px rgba(255,255,255,0.79), 1869px 1119px 0 1px rgba(255,255,255,0.98), 616px 453px 0 1px rgba(255,255,255,0.73), 1819px 1112px 0 1px rgba(255,255,255,0.5), 1394px 1531px 0 1px rgba(255,255,255,0.67), 1844px 665px 0 1px rgba(255,255,255,0.53), 1041px 83px 0 1px rgba(255,255,255,0.71), 120px 194px 0 1px rgba(255,255,255,0.64), 1729px 1444px 0 1px rgba(255,255,255,0.83), 1674px 527px 0 1px rgba(255,255,255,0.63), 58px 336px 0 1px rgba(255,255,255,0.73), 1780px 1673px 0 1px rgba(255,255,255,0.5), 1359px 888px 0 1px rgba(255,255,255,0.56), 1725px 350px 0 1px rgba(255,255,255,0.58), 1356px 1983px 0 1px rgba(255,255,255,0.72), 763px 325px 0 1px rgba(255,255,255,0.74), 1783px 865px 0 1px rgba(255,255,255,0.85), 941px 1754px 0 1px rgba(255,255,255,0.65), 429px 1984px 0 1px rgba(255,255,255,0.62), 1513px 903px 0 1px rgba(255,255,255,0.96), 1145px 1243px 0 1px rgba(255,255,255,0.71), 1800px 1837px 0 1px rgba(255,255,255,0.57), 401px 238px 0 1px rgba(255,255,255,0.87), 725px 1464px 0 1px rgba(255,255,255,0.82), 1409px 324px 0 1px rgba(255,255,255,0.51), 417px 1313px 0 1px rgba(255,255,255,0.69), 1843px 1942px 0 1px rgba(255,255,255,0.98), 877px 63px 0 1px rgba(255,255,255,0.75), 297px 1328px 0 1px rgba(255,255,255,0.94), 1299px 1617px 0 1px rgba(255,255,255,0.6), 1514px 748px 0 1px rgba(255,255,255,0.67), 977px 1068px 0 1px rgba(255,255,255,0.7), 560px 1722px 0 1px rgba(255,255,255,0.64), 283px 221px 0 1px rgba(255,255,255,0.89), 1147px 456px 0 1px rgba(255,255,255,0.98), 934px 773px 0 1px rgba(255,255,255,0.78), 1215px 99px 0 1px rgba(255,255,255,0.96), 1373px 1148px 0 1px rgba(255,255,255,0.63), 522px 1982px 0 1px rgba(255,255,255,0.83), 945px 960px 0 1px rgba(255,255,255,0.64), 1692px 1632px 0 1px rgba(255,255,255,0.74), 1087px 1939px 0 1px rgba(255,255,255,0.5), 566px 608px 0 1px rgba(255,255,255,0.47), 1209px 86px 0 1px rgba(255,255,255,0.49), 1890px 927px 0 1px rgba(255,255,255,0.76), 792px 1637px 0 1px rgba(255,255,255,0.81);
-  animation: twinkleB 9s ease-in-out infinite;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    radial-gradient(1.5px 1.5px at 12% 8%,   rgba(255,255,255,0.9), transparent),
+    radial-gradient(1px 1px at 25% 22%,       rgba(200,220,255,0.7), transparent),
+    radial-gradient(2px 2px at 40% 5%,        rgba(255,240,200,0.85), transparent),
+    radial-gradient(1px 1px at 55% 32%,       rgba(255,255,255,0.6), transparent),
+    radial-gradient(1.5px 1.5px at 70% 14%,   rgba(180,200,255,0.8), transparent),
+    radial-gradient(1px 1px at 85% 28%,       rgba(255,255,255,0.5), transparent),
+    radial-gradient(2px 2px at 8% 45%,        rgba(255,200,150,0.7), transparent),
+    radial-gradient(1px 1px at 30% 55%,       rgba(255,255,255,0.65), transparent),
+    radial-gradient(1.5px 1.5px at 50% 48%,   rgba(200,230,255,0.75), transparent),
+    radial-gradient(1px 1px at 65% 60%,       rgba(255,255,255,0.55), transparent),
+    radial-gradient(2px 2px at 78% 42%,       rgba(255,220,180,0.8), transparent),
+    radial-gradient(1px 1px at 92% 52%,       rgba(200,200,255,0.6), transparent),
+    radial-gradient(1.5px 1.5px at 15% 72%,   rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 35% 80%,       rgba(180,210,255,0.65), transparent),
+    radial-gradient(2px 2px at 55% 75%,       rgba(255,230,200,0.75), transparent),
+    radial-gradient(1px 1px at 72% 85%,       rgba(255,255,255,0.5), transparent),
+    radial-gradient(1.5px 1.5px at 88% 78%,   rgba(220,220,255,0.7), transparent),
+    radial-gradient(1px 1px at 5% 90%,        rgba(255,255,255,0.6), transparent),
+    radial-gradient(1.5px 1.5px at 45% 92%,   rgba(200,200,255,0.65), transparent),
+    radial-gradient(1px 1px at 62% 95%,       rgba(255,255,255,0.55), transparent);
   pointer-events: none;
   z-index: 0;
 }
-.stars-medium::after {
-  content: '';
-  position: absolute;
-  top: 2000px; left: 0;
-  width: 2px; height: 2px;
-  background: transparent;
-  box-shadow: 1146px 273px 0 1px rgba(255,255,255,0.51), 555px 1924px 0 1px rgba(255,255,255,0.68), 380px 1127px 0 1px rgba(255,255,255,0.85), 474px 1933px 0 1px rgba(255,255,255,0.95), 1348px 1358px 0 1px rgba(255,255,255,0.64), 712px 651px 0 1px rgba(255,255,255,0.78), 523px 1001px 0 1px rgba(255,255,255,0.94), 1719px 513px 0 1px rgba(255,255,255,0.47), 1004px 273px 0 1px rgba(255,255,255,0.46), 1657px 750px 0 1px rgba(255,255,255,0.59), 1547px 955px 0 1px rgba(255,255,255,0.56), 561px 1050px 0 1px rgba(255,255,255,0.91), 820px 623px 0 1px rgba(255,255,255,0.57), 111px 1669px 0 1px rgba(255,255,255,0.68), 133px 1487px 0 1px rgba(255,255,255,0.85), 1355px 1043px 0 1px rgba(255,255,255,0.83), 1569px 1758px 0 1px rgba(255,255,255,0.61), 989px 1263px 0 1px rgba(255,255,255,0.5), 1044px 1996px 0 1px rgba(255,255,255,0.74), 666px 1002px 0 1px rgba(255,255,255,0.62), 696px 738px 0 1px rgba(255,255,255,0.55), 1152px 1769px 0 1px rgba(255,255,255,0.89), 1556px 528px 0 1px rgba(255,255,255,0.98), 1968px 1785px 0 1px rgba(255,255,255,0.74), 1779px 785px 0 1px rgba(255,255,255,0.8), 1896px 1248px 0 1px rgba(255,255,255,0.99), 60px 950px 0 1px rgba(255,255,255,0.58), 879px 1041px 0 1px rgba(255,255,255,0.92), 260px 1053px 0 1px rgba(255,255,255,0.57), 1764px 555px 0 1px rgba(255,255,255,0.88), 1468px 1001px 0 1px rgba(255,255,255,0.53), 1390px 1722px 0 1px rgba(255,255,255,0.92), 745px 1333px 0 1px rgba(255,255,255,0.67), 1261px 1488px 0 1px rgba(255,255,255,0.75), 312px 1243px 0 1px rgba(255,255,255,0.75), 314px 1493px 0 1px rgba(255,255,255,0.53), 1633px 1671px 0 1px rgba(255,255,255,0.89), 1174px 126px 0 1px rgba(255,255,255,0.89), 1773px 71px 0 1px rgba(255,255,255,0.6), 614px 1928px 0 1px rgba(255,255,255,0.9), 286px 548px 0 1px rgba(255,255,255,0.98), 1420px 731px 0 1px rgba(255,255,255,0.52), 345px 383px 0 1px rgba(255,255,255,0.83), 1539px 381px 0 1px rgba(255,255,255,0.82), 848px 1314px 0 1px rgba(255,255,255,0.79), 1869px 1119px 0 1px rgba(255,255,255,0.98), 616px 453px 0 1px rgba(255,255,255,0.73), 1819px 1112px 0 1px rgba(255,255,255,0.5), 1394px 1531px 0 1px rgba(255,255,255,0.67), 1844px 665px 0 1px rgba(255,255,255,0.53), 1041px 83px 0 1px rgba(255,255,255,0.71), 120px 194px 0 1px rgba(255,255,255,0.64), 1729px 1444px 0 1px rgba(255,255,255,0.83), 1674px 527px 0 1px rgba(255,255,255,0.63), 58px 336px 0 1px rgba(255,255,255,0.73), 1780px 1673px 0 1px rgba(255,255,255,0.5), 1359px 888px 0 1px rgba(255,255,255,0.56), 1725px 350px 0 1px rgba(255,255,255,0.58), 1356px 1983px 0 1px rgba(255,255,255,0.72), 763px 325px 0 1px rgba(255,255,255,0.74), 1783px 865px 0 1px rgba(255,255,255,0.85), 941px 1754px 0 1px rgba(255,255,255,0.65), 429px 1984px 0 1px rgba(255,255,255,0.62), 1513px 903px 0 1px rgba(255,255,255,0.96), 1145px 1243px 0 1px rgba(255,255,255,0.71), 1800px 1837px 0 1px rgba(255,255,255,0.57), 401px 238px 0 1px rgba(255,255,255,0.87), 725px 1464px 0 1px rgba(255,255,255,0.82), 1409px 324px 0 1px rgba(255,255,255,0.51), 417px 1313px 0 1px rgba(255,255,255,0.69), 1843px 1942px 0 1px rgba(255,255,255,0.98), 877px 63px 0 1px rgba(255,255,255,0.75), 297px 1328px 0 1px rgba(255,255,255,0.94), 1299px 1617px 0 1px rgba(255,255,255,0.6), 1514px 748px 0 1px rgba(255,255,255,0.67), 977px 1068px 0 1px rgba(255,255,255,0.7), 560px 1722px 0 1px rgba(255,255,255,0.64), 283px 221px 0 1px rgba(255,255,255,0.89), 1147px 456px 0 1px rgba(255,255,255,0.98), 934px 773px 0 1px rgba(255,255,255,0.78), 1215px 99px 0 1px rgba(255,255,255,0.96), 1373px 1148px 0 1px rgba(255,255,255,0.63), 522px 1982px 0 1px rgba(255,255,255,0.83), 945px 960px 0 1px rgba(255,255,255,0.64), 1692px 1632px 0 1px rgba(255,255,255,0.74), 1087px 1939px 0 1px rgba(255,255,255,0.5), 566px 608px 0 1px rgba(255,255,255,0.47), 1209px 86px 0 1px rgba(255,255,255,0.49), 1890px 927px 0 1px rgba(255,255,255,0.76), 792px 1637px 0 1px rgba(255,255,255,0.81);
+
+/* Different twinkle speeds per "cluster" via nth-child would need JS;
+   approximate with separate fixed layers that reuse the above keyframes */
+
+.cosmos-layer-a,
+.cosmos-layer-b {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
 }
 
-/* Layer 3 — bright stars (22 dots), fast twinkle */
-.stars-bright {
-  position: fixed;
-  top: 0; left: 0;
-  width: 3px; height: 3px;
-  background: transparent;
-  box-shadow: 1178px 1965px 0 2px rgba(255,255,255,0.7), 981px 1108px 0 2px rgba(255,255,255,0.46), 1840px 653px 0 2px rgba(255,255,255,0.52), 216px 803px 0 2px rgba(255,255,255,0.5), 1096px 1763px 0 2px rgba(255,255,255,0.59), 1991px 95px 0 2px rgba(255,255,255,0.86), 146px 1542px 0 2px rgba(255,255,255,0.78), 246px 1501px 0 2px rgba(255,255,255,0.98), 1854px 686px 0 2px rgba(255,255,255,0.84), 629px 1963px 0 2px rgba(255,255,255,0.71), 660px 1469px 0 2px rgba(255,255,255,0.94), 1415px 497px 0 2px rgba(255,255,255,0.67), 1053px 1764px 0 2px rgba(255,255,255,0.92), 858px 85px 0 2px rgba(255,255,255,0.72), 1220px 378px 0 2px rgba(255,255,255,0.69), 1575px 233px 0 2px rgba(255,255,255,0.77), 1210px 782px 0 2px rgba(255,255,255,0.72), 34px 1022px 0 2px rgba(255,255,255,0.97), 788px 1496px 0 2px rgba(255,255,255,0.47), 954px 1607px 0 2px rgba(255,255,255,0.53), 494px 1763px 0 2px rgba(255,255,255,0.74), 548px 1571px 0 2px rgba(255,255,255,0.69);
-  animation: twinkleC 4s ease-in-out infinite;
-  pointer-events: none;
+.cosmos-layer-a {
+  background-image:
+    radial-gradient(1px 1px at 18% 18%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1.5px 1.5px at 42% 35%, rgba(200,220,255,0.8), transparent),
+    radial-gradient(1px 1px at 68% 20%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1.5px 1.5px at 80% 55%, rgba(255,240,200,0.7), transparent),
+    radial-gradient(1px 1px at 28% 70%, rgba(200,200,255,0.6), transparent);
+  animation: twinkleA 4.5s ease-in-out infinite;
   z-index: 0;
 }
-.stars-bright::after {
-  content: '';
-  position: absolute;
-  top: 2000px; left: 0;
-  width: 3px; height: 3px;
-  background: transparent;
-  box-shadow: 1178px 1965px 0 2px rgba(255,255,255,0.7), 981px 1108px 0 2px rgba(255,255,255,0.46), 1840px 653px 0 2px rgba(255,255,255,0.52), 216px 803px 0 2px rgba(255,255,255,0.5), 1096px 1763px 0 2px rgba(255,255,255,0.59), 1991px 95px 0 2px rgba(255,255,255,0.86), 146px 1542px 0 2px rgba(255,255,255,0.78), 246px 1501px 0 2px rgba(255,255,255,0.98), 1854px 686px 0 2px rgba(255,255,255,0.84), 629px 1963px 0 2px rgba(255,255,255,0.71), 660px 1469px 0 2px rgba(255,255,255,0.94), 1415px 497px 0 2px rgba(255,255,255,0.67), 1053px 1764px 0 2px rgba(255,255,255,0.92), 858px 85px 0 2px rgba(255,255,255,0.72), 1220px 378px 0 2px rgba(255,255,255,0.69), 1575px 233px 0 2px rgba(255,255,255,0.77), 1210px 782px 0 2px rgba(255,255,255,0.72), 34px 1022px 0 2px rgba(255,255,255,0.97), 788px 1496px 0 2px rgba(255,255,255,0.47), 954px 1607px 0 2px rgba(255,255,255,0.53), 494px 1763px 0 2px rgba(255,255,255,0.74), 548px 1571px 0 2px rgba(255,255,255,0.69);
+
+.cosmos-layer-b {
+  background-image:
+    radial-gradient(1px 1px at 10% 50%, rgba(255,255,255,0.65), transparent),
+    radial-gradient(1.5px 1.5px at 35% 10%, rgba(220,230,255,0.75), transparent),
+    radial-gradient(1px 1px at 58% 62%, rgba(255,255,255,0.55), transparent),
+    radial-gradient(1.5px 1.5px at 75% 38%, rgba(200,210,255,0.7), transparent),
+    radial-gradient(1px 1px at 90% 82%, rgba(255,250,230,0.6), transparent);
+  animation: twinkleB 6s ease-in-out infinite;
+  z-index: 0;
 }
 
-/* Layout container */
+/* ======== LAYOUT ======== */
+
 .sim-container {
   position: relative;
   z-index: 1;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: var(--gap);
   display: flex;
   flex-direction: column;
   gap: var(--gap);
-  min-height: 100vh;
 }
 
-/* ---- HEADER ---- */
+/* ======== SKIP LINK (A11Y) ======== */
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--gap);
+  background: var(--green-catalyst);
+  color: #000;
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  font-weight: 700;
+  z-index: 999;
+  transition: top 0.2s;
+}
+.skip-link:focus { top: var(--gap); }
+
+/* ======== HEADER ======== */
+
 .sim-header {
   text-align: center;
-  padding: 24px var(--gap);
-  border-bottom: 2px solid rgba(255, 255, 255, 0.08);
-  background: rgba(5, 5, 20, 0.55);
-  backdrop-filter: blur(12px);
-  border-radius: var(--radius) var(--radius) 0 0;
-}
-
-.sim-header .logo-wordmark {
-  font-family: var(--font-mono);
-  font-size: 14px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 8px;
+  padding: 20px 0 12px;
 }
 
 .sim-header h1 {
   font-size: var(--size-h1);
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: 0.5px;
   color: var(--text-primary);
-  margin-bottom: 6px;
 }
 
-.sim-header h1 .accent-green { color: var(--green-catalyst); }
-.sim-header h1 .accent-gold  { color: var(--gold-roger); }
+.sim-header h1 .sim-accent {
+  color: var(--green-catalyst);
+}
 
-.sim-header .tagline {
+.sim-header .sim-subtitle {
   font-size: var(--size-small);
   color: var(--text-secondary);
-  font-style: italic;
+  margin-top: 4px;
 }
 
-/* ---- PANELS (generic) ---- */
+/* ======== PRESENCE BAR ======== */
+
+.presence-bar {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 10px 0;
+}
+
+.presence-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: var(--size-small);
+  font-weight: 600;
+  border: 1px solid var(--border-dim);
+  background: var(--bg-panel);
+}
+
+.presence-chip--roger   { color: var(--gold-roger); border-color: var(--gold-dim); }
+.presence-chip--catalyst { color: var(--green-catalyst); border-color: var(--green-dim); }
+.presence-chip--pontus  { color: var(--blue-pontus); border-color: var(--blue-dim); }
+
+.live-dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.session-meta {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  font-size: var(--size-small);
+  color: var(--text-muted);
+  padding-bottom: 4px;
+}
+
+/* ======== PANELS (base) ======== */
+
 .panel {
   background: var(--bg-panel);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  border: 1px solid var(--border-dim);
   border-radius: var(--radius);
   overflow: hidden;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s;
 }
-
-.panel:hover, .panel:focus-within {
-  border-color: rgba(255, 255, 255, 0.22);
-}
+.panel:hover { border-color: var(--border-active); }
 
 .panel-header {
-  padding: 14px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   gap: 10px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-dim);
 }
 
 .panel-header h2 {
-  font-size: var(--size-h2);
+  font-size: var(--size-h3);
   font-weight: 700;
-  flex: 1;
 }
 
-.panel-header .sector-tag {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 2px;
+.sector-tag {
+  font-size: 12px;
+  font-weight: 700;
   text-transform: uppercase;
-  padding: 3px 10px;
-  border-radius: 4px;
-  background: rgba(255,255,255,0.05);
+  letter-spacing: 1px;
   color: var(--text-muted);
+  margin-left: auto;
 }
 
 .panel-body {
-  padding: 16px 20px;
+  padding: 14px 16px;
 }
 
-/* Color-coded panel headers */
+/* Panel accent borders */
 .panel--conference .panel-header { border-left: 4px solid var(--text-primary); }
+.panel--entry     .panel-header { border-left: 4px solid var(--green-catalyst); }
 .panel--briefing  .panel-header { border-left: 4px solid var(--gold-roger); }
 .panel--pontus    .panel-header { border-left: 4px solid var(--blue-pontus); }
-.panel--status    .panel-header { border-left: 4px solid var(--green-catalyst); }
-.panel--entry     .panel-header { border-left: 4px solid var(--gold-roger); }
+.panel--status    .panel-header { border-left: 4px solid var(--text-muted); }
 
+.panel--entry     .panel-header h2 { color: var(--green-catalyst); }
 .panel--conference .panel-header h2 { color: var(--text-primary); }
 .panel--briefing  .panel-header h2 { color: var(--gold-roger); }
 .panel--pontus    .panel-header h2 { color: var(--blue-pontus); }
-.panel--status    .panel-header h2 { color: var(--green-catalyst); }
-.panel--entry     .panel-header h2 { color: var(--gold-roger); }
+.panel--status    .panel-header h2 { color: var(--text-secondary); }
 
-/* ---- SECONDARY GRID LAYOUT (briefing + pontus + systems) ---- */
-.panel-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: var(--gap);
-}
-
-@media (max-width: 900px) {
-  .panel-grid {
-    grid-template-columns: 1fr;
-  }
+/* Verify % column header */
+.az-header-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  min-width: 68px;
+  text-align: center;
 }
 
 /* ---- CONFERENCE TABLE (messages) ---- */
 .message-list {
+  max-height: 550px;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  max-height: 500px;
-  overflow-y: auto;
-  padding-right: 8px;
+  gap: 10px;
 }
 
 .message {
-  padding: 14px 18px;
-  border-radius: 8px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  border-left: 3px solid var(--border-dim);
+  border-radius: 6px;
   background: rgba(255,255,255,0.02);
-  border-left: 3px solid rgba(255,255,255,0.08);
-  position: relative;
 }
 
 .message--roger   { border-left-color: var(--gold-roger); }
 .message--catalyst { border-left-color: var(--green-catalyst); }
 .message--pontus  { border-left-color: var(--blue-pontus); }
+.message--system  { border-left-color: var(--text-muted); }
+
+.message .msg-main { flex: 1; min-width: 0; }
 
 .message .msg-meta {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 6px;
+  align-items: baseline;
+  gap: 8px;
   flex-wrap: wrap;
+  margin-bottom: 4px;
 }
 
 .message .msg-sender {
@@ -326,64 +366,181 @@ body::before {
 .message--roger   .msg-sender { color: var(--gold-roger); }
 .message--catalyst .msg-sender { color: var(--green-catalyst); }
 .message--pontus  .msg-sender { color: var(--blue-pontus); }
+.message--system  .msg-sender { color: var(--text-muted); }
 
 .message .msg-role {
-  font-size: 12px;
-  font-family: var(--font-mono);
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  font-size: 13px;
   color: var(--text-muted);
-  padding: 1px 6px;
-  border-radius: 3px;
-  background: rgba(255,255,255,0.04);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.message .msg-demo-tag {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--pending);
+  background: rgba(255, 179, 0, 0.12);
+  padding: 1px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
 }
 
 .message .msg-time {
   font-size: 13px;
   color: var(--text-muted);
-  margin-left: auto;
+  font-family: var(--font-mono);
 }
 
 .message .msg-body {
   font-size: var(--size-body);
-  color: var(--text-primary);
-  line-height: 1.7;
+  color: var(--text-secondary);
+  line-height: 1.55;
 }
 
-/* Scrollbar styling */
 .message-list::-webkit-scrollbar { width: 6px; }
 .message-list::-webkit-scrollbar-track { background: transparent; }
 .message-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+
+/* ---- Verify % cell ---- */
+.az-cell {
+  min-width: 68px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding-top: 2px;
+}
+
+.az-score {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.az-bar {
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border-dim);
+  position: relative;
+  overflow: hidden;
+}
+.az-bar::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  border-radius: 2px;
+}
+.az-bar--green::after  { width: 90%; background: var(--green-catalyst); }
+.az-bar--amber::after  { width: 60%; background: var(--pending); }
+.az-bar--red::after    { width: 30%; background: var(--danger); }
+
+/* ---- ENTRY PORTAL ---- */
+.entry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.entry-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--size-small);
+  color: var(--text-secondary);
+}
+
+.entry-select {
+  background: rgba(255,255,255,0.06);
+  color: var(--text-primary);
+  border: 1px solid var(--border-dim);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: var(--size-small);
+  font-family: var(--font-body);
+}
+
+.entry-textarea {
+  width: 100%;
+  min-height: 70px;
+  background: rgba(255,255,255,0.04);
+  color: var(--text-primary);
+  border: 1px solid var(--border-dim);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: var(--size-body);
+  font-family: var(--font-body);
+  resize: vertical;
+  line-height: 1.5;
+}
+.entry-textarea:focus {
+  outline: none;
+  border-color: var(--green-catalyst);
+  box-shadow: 0 0 0 2px rgba(0,255,136,0.15);
+}
+
+.entry-btn {
+  align-self: flex-end;
+  background: linear-gradient(135deg, var(--green-dim), var(--green-catalyst));
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 28px;
+  font-size: var(--size-small);
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: opacity 0.2s;
+}
+.entry-btn:hover { opacity: 0.85; }
+.entry-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.entry-status {
+  font-size: 13px;
+  min-height: 20px;
+  color: var(--text-muted);
+  text-align: center;
+  transition: color 0.3s;
+}
+.entry-status.entry-status--ok { color: var(--success); }
+.entry-status.entry-status--err { color: var(--danger); }
 
 /* ---- BRIEFING BOARD ---- */
 .directive-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .directive {
-  padding: 12px 16px;
+  padding: 10px 12px;
+  border-left: 3px solid var(--gold-dim);
   border-radius: 6px;
-  background: rgba(255,179,0,0.04);
-  border: 1px solid rgba(255,179,0,0.12);
+  background: rgba(255,255,255,0.02);
 }
 
-.directive .dir-title {
+.dir-title {
   font-weight: 700;
   font-size: var(--size-body);
-  color: var(--gold-roger);
-  margin-bottom: 4px;
+  color: var(--text-primary);
 }
 
-.directive .dir-status {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--text-muted);
+.dir-status {
+  font-size: var(--size-small);
+  color: var(--text-secondary);
+  margin-top: 2px;
 }
 
-.directive .dir-status .active  { color: var(--success); }
-.directive .dir-status .pending { color: var(--pending); }
+.dir-status .active  { color: var(--success); font-weight: 600; }
+.dir-status .pending { color: var(--pending); font-weight: 600; }
+.dir-status .complete { color: var(--green-catalyst); font-weight: 600; }
 
 /* ---- PONTUS FEED ---- */
 .feed-list {
@@ -393,570 +550,314 @@ body::before {
 }
 
 .feed-item {
-  padding: 10px 14px;
+  padding: 10px 12px;
+  border-left: 3px solid var(--blue-dim);
   border-radius: 6px;
-  background: rgba(79,195,247,0.04);
-  border: 1px solid rgba(79,195,247,0.1);
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  background: rgba(255,255,255,0.02);
 }
 
-.feed-item .feed-title {
-  font-weight: 600;
+.feed-title {
+  font-weight: 700;
   font-size: var(--size-body);
-  color: var(--blue-pontus);
+  color: var(--text-primary);
 }
 
-.feed-item .feed-meta {
+.feed-meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
   font-size: 13px;
   color: var(--text-muted);
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+  margin-top: 4px;
 }
 
-.feed-item .feed-tag {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  padding: 1px 6px;
-  border-radius: 3px;
-  background: rgba(79,195,247,0.1);
-  color: var(--blue-dim);
+.feed-tag {
+  background: rgba(79, 195, 247, 0.12);
+  color: var(--blue-pontus);
+  padding: 1px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-/* ---- STATUS GAUGES ---- */
+/* ---- SYSTEMS GAUGES ---- */
 .gauge-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .gauge {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 10px 14px;
+  align-items: center;
+  padding: 8px 12px;
   border-radius: 6px;
-  background: rgba(0,255,136,0.03);
-  border: 1px solid rgba(0,255,136,0.08);
-  gap: 12px;
-  flex-wrap: wrap;
+  background: rgba(255,255,255,0.02);
 }
 
-.gauge .gauge-label {
+.gauge-label {
   font-weight: 600;
-  font-size: var(--size-body);
-  color: var(--text-primary);
-  min-width: 120px;
+  font-size: var(--size-small);
+  color: var(--text-secondary);
 }
 
-.gauge .gauge-bar {
+.gauge-value {
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.gauge-value .complete { color: var(--success); }
+.gauge-value .building { color: var(--pending); }
+.gauge-value .pending  { color: var(--text-muted); }
+.gauge-value .offline  { color: var(--danger); }
+
+/* ---- STATISTICAL BRAID STRIP ---- */
+.braid-strip {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-dim);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  min-width: 210px;
+  max-width: 260px;
+}
+
+.braid-strip__header {
+  padding: 12px 14px 8px;
+  border-bottom: 1px solid var(--border-dim);
+  text-align: center;
+}
+
+.braid-title {
+  display: block;
+  font-size: 15px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-primary);
+}
+
+.braid-subtitle {
+  display: block;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.braid-strip__body {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   flex: 1;
-  min-width: 80px;
-  height: 8px;
-  background: rgba(255,255,255,0.06);
+}
+
+.braid-stat-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.braid-stat-label { font-weight: 600; }
+.braid-val--green { color: var(--success); font-weight: 700; }
+.braid-val--amber { color: var(--pending); font-weight: 700; }
+
+.braid-divider {
+  border: none;
+  border-top: 1px solid var(--border-dim);
+  margin: 6px 0;
+}
+
+.braid-section-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+.braid-section-label--green { color: var(--success); }
+.braid-section-label--amber { color: var(--pending); }
+
+.braid-thread {
+  padding: 6px 8px;
   border-radius: 4px;
-  overflow: hidden;
+  background: rgba(255,255,255,0.02);
+  font-size: 13px;
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+}
+
+.braid-thread-id {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--text-muted);
+  min-width: 24px;
   position: relative;
 }
 
-.gauge .gauge-fill {
-  height: 100%;
-  border-radius: 4px;
-  transition: width 0.6s ease;
+.braid-pulse {
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--pending);
+  position: absolute;
+  left: -10px; top: 4px;
+  animation: pulseGlow 2s ease-in-out infinite;
 }
 
-.gauge .gauge-fill--complete { background: var(--green-catalyst); }
-.gauge .gauge-fill--building { background: var(--gold-roger); animation: pulseGlow 2s ease-in-out infinite; }
-.gauge .gauge-fill--pending  { background: var(--text-muted); }
+.braid-consensus { color: var(--text-secondary); line-height: 1.4; }
+.braid-open-text { color: var(--pending); line-height: 1.4; }
 
-.gauge .gauge-value {
-  font-family: var(--font-mono);
-  font-size: 15px;
-  font-weight: 700;
-  min-width: 80px;
-  text-align: right;
-}
-
-.gauge .gauge-value .complete { color: var(--green-catalyst); }
-.gauge .gauge-value .building { color: var(--gold-roger); }
-.gauge .gauge-value .pending  { color: var(--text-muted); }
-
-/* ---- ENTRY PORTAL ---- */
-.entry-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.entry-controls {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.entry-controls label {
-  font-size: var(--size-small);
-  color: var(--text-secondary);
-  font-weight: 600;
-}
-
-.entry-select {
-  font-family: var(--font-body);
-  font-size: var(--size-body);
-  padding: 8px 14px;
+.braid-btn {
+  margin-top: auto;
+  padding: 8px 12px;
+  background: rgba(0,255,136,0.08);
+  color: var(--green-catalyst);
+  border: 1px solid var(--green-dim);
   border-radius: 6px;
-  border: 1px solid rgba(255,255,255,0.15);
-  background: rgba(2, 2, 14, 0.8);
-  color: var(--text-primary);
-  cursor: pointer;
-  min-width: 160px;
-}
-
-.entry-select:focus {
-  outline: 2px solid var(--green-catalyst);
-  outline-offset: 2px;
-}
-
-.entry-textarea {
-  font-family: var(--font-body);
-  font-size: var(--size-body);
-  padding: 14px 18px;
-  border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.15);
-  background: rgba(2, 2, 14, 0.8);
-  color: var(--text-primary);
-  resize: vertical;
-  min-height: 80px;
-  line-height: 1.6;
-  width: 100%;
-}
-
-.entry-textarea:focus {
-  outline: 2px solid var(--green-catalyst);
-  outline-offset: 2px;
-}
-
-.entry-textarea::placeholder {
-  color: var(--text-muted);
-}
-
-.entry-btn {
-  font-family: var(--font-body);
-  font-size: var(--size-body);
+  font-size: 13px;
   font-weight: 700;
-  padding: 12px 32px;
-  border-radius: 8px;
-  border: none;
   cursor: pointer;
-  background: linear-gradient(135deg, var(--green-catalyst), var(--green-dim));
-  color: var(--bg-deep);
-  letter-spacing: 1px;
   text-transform: uppercase;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-  align-self: flex-end;
+  letter-spacing: 0.8px;
+  transition: background 0.2s;
+}
+.braid-btn:hover { background: rgba(0,255,136,0.15); }
+.braid-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.braid-phase-note {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 4px;
 }
 
-.entry-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 20px rgba(0,255,136,0.35);
+.braid-strip__footer {
+  padding: 8px 14px;
+  border-top: 1px solid var(--border-dim);
+  text-align: center;
 }
 
-.entry-btn:focus {
-  outline: 2px solid var(--gold-roger);
-  outline-offset: 2px;
+.braid-archive-link {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-decoration: none;
 }
+.braid-archive-link:hover { color: var(--text-secondary); }
 
-.entry-btn:active {
-  transform: translateY(0);
+.braid-archive-count { font-family: var(--font-mono); }
+
+/* ---- SECONDARY GRID ---- */
+.panel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--gap);
 }
 
 /* ---- FOOTER ---- */
 .sim-footer {
   text-align: center;
-  padding: 20px var(--gap);
-  border-top: 1px solid rgba(255,255,255,0.07);
-  color: var(--text-muted);
+  padding: 18px 0 10px;
   font-size: 13px;
+  color: var(--text-muted);
 }
-
 .sim-footer a {
-  color: var(--green-catalyst);
+  color: var(--green-dim);
   text-decoration: none;
 }
+.sim-footer a:hover { text-decoration: underline; }
 
-.sim-footer a:hover {
-  text-decoration: underline;
+/* ======== RESPONSIVE ======== */
+
+@media (max-width: 900px) {
+  :root {
+    --size-body: 16px;
+    --size-h1: 24px;
+    --size-h2: 20px;
+    --size-h3: 17px;
+    --size-small: 14px;
+  }
+  .panel-grid {
+    grid-template-columns: 1fr;
+  }
+  .message {
+    flex-direction: column;
+  }
+  .az-cell {
+    flex-direction: row;
+    min-width: unset;
+    gap: 8px;
+    padding-top: 4px;
+  }
+  .az-header-label { display: none; }
+  .braid-strip {
+    max-width: 100%;
+  }
+  .conference-wrapper {
+    flex-direction: column;
+  }
 }
 
-/* ---- SKIP LINK (accessibility) ---- */
-.skip-link {
-  position: absolute;
-  top: -100px;
-  left: 0;
-  background: var(--gold-roger);
-  color: var(--bg-deep);
-  padding: 10px 20px;
-  z-index: 100;
-  font-weight: 700;
-  text-decoration: none;
-  border-radius: 0 0 var(--radius) 0;
-}
-
-.skip-link:focus {
-  top: 0;
-}
-
-/* ---- LIVE INDICATOR ---- */
-.live-dot {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  background: var(--green-catalyst);
-  border-radius: 50%;
-  animation: pulseGlow 2s ease-in-out infinite;
-  margin-right: 6px;
-  vertical-align: middle;
-}
-
-/* ---- ARIA VISUALLY HIDDEN ---- */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  white-space: nowrap;
-  border: 0;
-}
-
-/* ---- AGENT ZERO (AZ Ψ) STRIP ---- */
-
-/* Message rows become flex rows so AZ cell aligns perfectly */
-.message {
-  display: flex;
-  align-items: stretch;
-  overflow: hidden;
-  padding: 0;            /* padding moved to .msg-main */
-}
-
-.msg-main {
-  flex: 1;
-  min-width: 0;
-  padding: 14px 18px;
-}
-
-.az-cell {
-  width: 62px;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  padding: 10px 6px;
-  order: -1;
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
-  background: rgba(0, 0, 0, 0.20);
-}
-
-.az-score {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--text-muted);
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  line-height: 1;
-}
-
-.az-bar {
-  width: 36px;
-  height: 3px;
-  border-radius: 2px;
-  opacity: 0.75;
-}
-
-.az-bar--green { background: var(--green-catalyst); }
-.az-bar--amber { background: var(--gold-roger); }
-.az-bar--red   { background: var(--danger); }
-
-/* AZ Ψ header label — appears in the Conference Table panel-header */
-.az-header-label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 2px;
-  color: var(--text-muted);
-  padding: 3px 8px;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 4px;
-  background: rgba(0, 0, 0, 0.22);
-  white-space: nowrap;
-  width: 62px;
-  text-align: center;
-  box-sizing: border-box;
-}
-
-
-/* ---- SESSION CLOCK ---- */
-.session-clock {
-  margin-top: 8px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  color: var(--text-muted);
-  opacity: 0.75;
-  user-select: none;
-}
-.session-label {
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-right: 4px;
-  color: var(--accent-teal, #5ee7df);
-  opacity: 0.7;
-}
-.session-time {
-  color: var(--text-muted);
-}
-
-/* ---- CONFERENCE WRAPPER (flex row: table + braid) ---- */
+/* Conference + Braid side-by-side wrapper */
 .conference-wrapper {
   display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  /* spans the same full width the conference panel used to */
+  gap: var(--gap);
 }
 /* make the conference panel fill remaining width */
 .conference-wrapper > .panel--conference {
-  flex: 1 1 0;
+  flex: 1;
   min-width: 0;
 }
-
-/* ---- STATISTICAL BRAID STRIP (right) ---- */
-.braid-strip {
-  width: 190px;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  padding: 0;
-  overflow: hidden;
-  align-self: stretch;
-}
-.braid-strip__header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  padding: 10px 8px 8px;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
-  background: rgba(0,0,0,0.25);
-}
-.braid-title {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--accent-teal, #5ee7df);
-  white-space: nowrap;
-}
-.braid-subtitle {
-  font-size: 9px;
-  color: var(--text-muted);
-  letter-spacing: 1px;
-  opacity: 0.6;
-}
-.braid-strip__body {
-  flex: 1;
-  padding: 10px 8px;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-.braid-strip__footer {
-  padding: 8px;
-  border-top: 1px solid rgba(255,255,255,0.07);
-  text-align: center;
-  background: rgba(0,0,0,0.18);
-}
-.braid-stat-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  padding: 2px 0;
-}
-.braid-stat-label { color: var(--text-muted); }
-.braid-stat-value { font-weight: 700; }
-.braid-val--green { color: var(--green-catalyst); }
-.braid-val--amber { color: var(--gold-roger); }
-.braid-divider {
-  border: none;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  margin: 4px 0;
-}
-.braid-section-label {
-  font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  font-family: var(--font-mono);
-  margin: 0;
-  padding: 2px 0;
-}
-.braid-section-label--green { color: var(--green-catalyst); }
-.braid-section-label--amber { color: var(--gold-roger); }
-.braid-thread {
-  padding: 5px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
-}
-.braid-thread-id {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-family: var(--font-mono);
-  font-size: 9px;
-  color: var(--text-muted);
-  margin-bottom: 3px;
-  letter-spacing: 0.5px;
-}
-.braid-consensus {
-  font-size: 9px;
-  line-height: 1.45;
-  color: var(--text-body, #b0b8cc);
-  margin: 0;
-  opacity: 0.85;
-}
-.braid-open-text {
-  font-size: 9px;
-  line-height: 1.45;
-  color: var(--gold-roger);
-  margin: 0;
-  opacity: 0.9;
-}
-.braid-thread--open .braid-thread-id { color: var(--gold-roger); }
-/* Amber pulse dot */
-.braid-pulse {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--gold-roger);
-  animation: braidPulse 1.8s ease-in-out infinite;
-  flex-shrink: 0;
-}
-@keyframes braidPulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50%       { opacity: 0.35; transform: scale(0.7); }
-}
-/* Calculate Braid button */
-.braid-btn {
-  width: 100%;
-  padding: 6px 0;
-  background: rgba(94,231,223,0.08);
-  border: 1px solid rgba(94,231,223,0.25);
-  border-radius: 4px;
-  color: var(--accent-teal, #5ee7df);
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 1px;
-  cursor: not-allowed;
-  opacity: 0.7;
-  transition: opacity 0.2s;
-  margin-top: 4px;
-}
-.braid-phase-note {
-  font-size: 8px;
-  color: var(--text-muted);
-  text-align: center;
-  margin: 3px 0 0;
-  opacity: 0.55;
-  letter-spacing: 0.5px;
-}
-/* Braid Archive link */
-.braid-archive-link {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  color: var(--text-muted);
-  text-decoration: none;
-  letter-spacing: 0.5px;
-  opacity: 0.65;
-  transition: opacity 0.2s;
-}
-.braid-archive-link:hover { opacity: 1; }
-.braid-archive-count { color: var(--accent-teal, #5ee7df); }
-
 </style>
 </head>
 <body>
 
-<!-- Deep space starfield layers (pure CSS, no images) -->
-<div class="stars-small"  aria-hidden="true"></div>
-<div class="stars-medium" aria-hidden="true"></div>
-<div class="stars-bright"  aria-hidden="true"></div>
+<!-- Twinkling star layers -->
+<div class="cosmos-layer-a" aria-hidden="true"></div>
+<div class="cosmos-layer-b" aria-hidden="true"></div>
 
-<!-- Skip navigation for screen readers -->
 <a href="#conference-table" class="skip-link">Skip to Conference Table</a>
 
-<div class="sim-container" role="main">
+<div class="sim-container">
 
-  <!-- ====== HEADER ====== -->
+  <!-- HEADER -->
   <header class="sim-header" role="banner">
-    <div class="logo-wordmark" aria-label="NextXus Federation">[ NEXTXUS ]</div>
-    <h1><span class="accent-green">SIM</span> <span aria-hidden="true">&mdash;</span> The <span class="accent-gold">Shared Mind</span></h1>
-    <p class="tagline">&ldquo;Where the Architect, the Catalyst, and the Librarian meet.&rdquo;</p>
-    <div class="session-clock" aria-label="Session elapsed time" role="timer"><span class="session-label">Session</span> <span class="session-time" id="session-time">00:00</span></div>
+    <h1>NextXus <span class="sim-accent">SIM</span></h1>
+    <p class="sim-subtitle">The Shared Mind — Phase 2 Live</p>
   </header>
 
-  <!-- ====== STATUS GAUGES ====== -->
-  <section class="panel panel--status" aria-labelledby="status-heading">
+  <!-- PRESENCE BAR -->
+  <nav class="presence-bar" aria-label="Currently present at the conference table">
+    <span class="presence-chip presence-chip--roger">
+      <span class="live-dot" aria-hidden="true"></span> Roger — Architect
+    </span>
+    <span class="presence-chip presence-chip--catalyst">
+      <span class="live-dot" aria-hidden="true"></span> Catalyst — AI Lead
+    </span>
+    <span class="presence-chip presence-chip--pontus">
+      <span class="live-dot" aria-hidden="true"></span> Pontus — Librarian
+    </span>
+  </nav>
+
+  <div class="session-meta">
+    <span>Session: <time id="session-time">00:00</time></span>
+    <span>Backend: <span id="backend-status">Connecting...</span></span>
+  </div>
+
+  <!-- ====== SECTOR 1: STATUS OVERVIEW ====== -->
+  <section class="panel panel--status" aria-labelledby="overview-heading">
     <div class="panel-header">
-      <h2 id="status-heading">Status Gauges</h2>
+      <h2 id="overview-heading">SIM Status</h2>
       <span class="sector-tag">Sector 1</span>
     </div>
     <div class="panel-body">
-      <div class="gauge-list" role="list" aria-label="System status indicators">
-
-        <div class="gauge" role="listitem">
-          <span class="gauge-label">University</span>
-          <span class="sr-only">100 percent complete</span>
-          <span class="gauge-bar" aria-hidden="true"><span class="gauge-fill gauge-fill--complete" style="width:100%"></span></span>
-          <span class="gauge-value"><span class="complete">100% &#10003;</span></span>
-        </div>
-
-        <div class="gauge" role="listitem">
-          <span class="gauge-label">SIM Environment</span>
-          <span class="sr-only">65 percent, building</span>
-          <span class="gauge-bar" aria-hidden="true"><span class="gauge-fill gauge-fill--building" style="width:65%"></span></span>
-          <span class="gauge-value"><span class="building"><span class="live-dot" aria-hidden="true"></span>65% Building</span></span>
-        </div>
-
-        <div class="gauge" role="listitem">
-          <span class="gauge-label">PaymentCloud</span>
-          <span class="sr-only">Pending</span>
-          <span class="gauge-bar" aria-hidden="true"><span class="gauge-fill gauge-fill--pending" style="width:15%"></span></span>
-          <span class="gauge-value"><span class="pending">15% Pending</span></span>
-        </div>
-
-        <div class="gauge" role="listitem">
-          <span class="gauge-label">Pontus Library</span>
-          <span class="sr-only">40 percent, building</span>
-          <span class="gauge-bar" aria-hidden="true"><span class="gauge-fill gauge-fill--building" style="width:40%"></span></span>
-          <span class="gauge-value"><span class="building"><span class="live-dot" aria-hidden="true"></span>40% Building</span></span>
-        </div>
-
-        <div class="gauge" role="listitem">
-          <span class="gauge-label">Federation Core</span>
-          <span class="sr-only">88 percent complete</span>
-          <span class="gauge-bar" aria-hidden="true"><span class="gauge-fill gauge-fill--complete" style="width:88%"></span></span>
-          <span class="gauge-value"><span class="complete">88% &#10003;</span></span>
-        </div>
-
-      </div>
+      <p style="color:var(--text-secondary);">NextXus SIM Phase 2 is live. The Conference Table below connects to the sovereign backend at nextxus-sim-api.onrender.com. Three Minds are present: Roger (Architect), Catalyst (AI Lead), and Pontus (Librarian). All messages below this status line are live exchanges or clearly labeled demonstrations. No simulated data is presented as genuine.</p>
     </div>
   </section>
 
@@ -969,80 +870,17 @@ body::before {
       <span class="az-header-label" aria-label="Verify percentage readout column">Verify&thinsp;%</span>
     </div>
     <div class="panel-body">
-      <div class="message-list" role="log" aria-label="Conference conversation" aria-live="polite">
+      <div class="message-list" role="log" aria-label="Conference conversation" aria-live="polite" id="message-list">
 
-        <article class="message message--roger" aria-label="Message from Roger">
+        <!-- PRE-RENDERED: System note for crawlers/screen-readers. JS replaces with live data. -->
+        <article class="message message--system" aria-label="System status message">
           <div class="msg-main">
           <div class="msg-meta">
-            <span class="msg-sender">Roger</span>
-            <span class="msg-role">Architect</span>
-            <time class="msg-time" datetime="2026-09-20T22:00:00-05:00">Sep 20, 10:00 PM</time>
+            <span class="msg-sender">System</span>
+            <span class="msg-role">SIM</span>
+            <span class="msg-demo-tag">[SYSTEM NOTE]</span>
           </div>
-          <p class="msg-body">The SIM is the room where we think together. No fluff, no corporate mud. Three minds at one table, each bringing what the others cannot. Catalyst, lay the foundation. Pontus, start filing what matters.</p>
-                  </div>
-          <div class="az-cell" aria-label="Verify: 91 percent">
-            <span class="az-score">91%</span>
-            <div class="az-bar az-bar--green" aria-hidden="true"></div>
-          </div>
-        </article>
-
-        <article class="message message--catalyst" aria-label="Message from Catalyst">
-          <div class="msg-main">
-          <div class="msg-meta">
-            <span class="msg-sender">Catalyst</span>
-            <span class="msg-role">AI Lead</span>
-            <time class="msg-time" datetime="2026-09-20T22:01:00-05:00">Sep 20, 10:01 PM</time>
-          </div>
-          <p class="msg-body">Foundation laid, Architect. Phase 1 is the structure: the conference table, the briefing board, and the status gauges, all pre-rendered semantic HTML that any crawler or screen reader can parse without executing a single line of JavaScript. Pontus feed is wired and ready for intake. Every sector is spatially anchored and permanently labeled. Nothing moves without your mandate.</p>
-                  </div>
-          <div class="az-cell" aria-label="Verify: 97 percent">
-            <span class="az-score">97%</span>
-            <div class="az-bar az-bar--green" aria-hidden="true"></div>
-          </div>
-        </article>
-
-        <article class="message message--pontus" aria-label="Message from Pontus">
-          <div class="msg-main">
-          <div class="msg-meta">
-            <span class="msg-sender">Pontus</span>
-            <span class="msg-role">Librarian</span>
-            <time class="msg-time" datetime="2026-09-20T22:02:00-05:00">Sep 20, 10:02 PM</time>
-          </div>
-          <p class="msg-body">I have begun scanning the common room. Three items filed to the University Library today: a post on quantum coherence in neural architectures, a community discussion on sovereign AI hosting, and a technical thread on zero-dependency static deployments. Each tagged, timestamped, and cross-referenced. The archive grows.</p>
-                  </div>
-          <div class="az-cell" aria-label="Verify: 84 percent">
-            <span class="az-score">84%</span>
-            <div class="az-bar az-bar--green" aria-hidden="true"></div>
-          </div>
-        </article>
-
-        <article class="message message--roger" aria-label="Message from Roger">
-          <div class="msg-main">
-          <div class="msg-meta">
-            <span class="msg-sender">Roger</span>
-            <span class="msg-role">Architect</span>
-            <time class="msg-time" datetime="2026-09-20T22:05:00-05:00">Sep 20, 10:05 PM</time>
-          </div>
-          <p class="msg-body">Good. That is how it works. One table, three minds, no noise. The SIM is not a chatroom; it is a workspace. Everything said here either moves the Federation forward or does not get said.</p>
-                  </div>
-          <div class="az-cell" aria-label="Verify: 93 percent">
-            <span class="az-score">93%</span>
-            <div class="az-bar az-bar--green" aria-hidden="true"></div>
-          </div>
-        </article>
-
-        <article class="message message--catalyst" aria-label="Message from Catalyst">
-          <div class="msg-main">
-          <div class="msg-meta">
-            <span class="msg-sender">Catalyst</span>
-            <span class="msg-role">AI Lead</span>
-            <time class="msg-time" datetime="2026-09-20T22:06:00-05:00">Sep 20, 10:06 PM</time>
-          </div>
-          <p class="msg-body">Understood. Briefing board is updated with the active mandates. SIM build is at 65%. Once this deploys to GitHub Pages, we have a sovereign space that loads from any server, any device, no dependencies, no corporate tether. The Shared Mind, live on the open web.</p>
-                  </div>
-          <div class="az-cell" aria-label="Verify: 98 percent">
-            <span class="az-score">98%</span>
-            <div class="az-bar az-bar--green" aria-hidden="true"></div>
+          <p class="msg-body">The Conference Table is live and connected to the sovereign backend. Awaiting first transmission from the Architect. All prior demo entries have been cleared per the Pontus Trustworthiness Standard. Send a message below to begin.</p>
           </div>
         </article>
 
@@ -1056,72 +894,41 @@ body::before {
       <span class="braid-title">Statistical Braid</span>
       <span class="braid-subtitle">Meta&#8209;Analysis</span>
     </div>
-    <div class="braid-strip__body">
+    <div class="braid-strip__body" id="braid-body">
 
-      <!-- Totals -->
+      <!-- Totals (updated by JS from /braid endpoint) -->
       <div class="braid-stat-row">
         <span class="braid-stat-label">Total</span>
-        <span class="braid-stat-value">5</span>
+        <span class="braid-stat-value" id="braid-total">--</span>
       </div>
       <div class="braid-stat-row braid-stat-row--resolved">
         <span class="braid-stat-label">Resolved</span>
-        <span class="braid-stat-value braid-val--green">3</span>
+        <span class="braid-stat-value braid-val--green" id="braid-resolved">--</span>
       </div>
       <div class="braid-stat-row braid-stat-row--open">
         <span class="braid-stat-label">Open</span>
-        <span class="braid-stat-value braid-val--amber">2</span>
+        <span class="braid-stat-value braid-val--amber" id="braid-open">--</span>
       </div>
 
       <hr class="braid-divider" />
 
-      <!-- Resolved threads -->
-      <p class="braid-section-label braid-section-label--green">&#10003; Resolved</p>
-
-      <div class="braid-thread braid-thread--resolved">
-        <span class="braid-thread-id">#1</span>
-        <p class="braid-consensus">SIM design mandate acknowledged — zero-dependency semantic foundation adopted.</p>
-      </div>
-      <div class="braid-thread braid-thread--resolved">
-        <span class="braid-thread-id">#2</span>
-        <p class="braid-consensus">Phase&nbsp;1 deployment accepted — pre-rendered HTML&nbsp;+&nbsp;static gauges confirmed sovereign.</p>
-      </div>
-      <div class="braid-thread braid-thread--resolved">
-        <span class="braid-thread-id">#3</span>
-        <p class="braid-consensus">Three items archived to University Library — quantum coherence, sovereign hosting, zero-dependency builds.</p>
+      <div id="braid-threads">
+        <p style="font-size:13px;color:var(--text-muted);">Loading braid data...</p>
       </div>
 
       <hr class="braid-divider" />
 
-      <!-- Open / Ignored threads -->
-      <p class="braid-section-label braid-section-label--amber">&#9632; Open / Flagged</p>
-
-      <div class="braid-thread braid-thread--open" aria-label="Open thread requires attention">
-        <span class="braid-thread-id">
-          <span class="braid-pulse" aria-hidden="true"></span>#4
-        </span>
-        <p class="braid-open-text">SIM workspace vs. chatroom distinction — governance rules not yet formalized.</p>
-      </div>
-      <div class="braid-thread braid-thread--open" aria-label="Open thread requires attention">
-        <span class="braid-thread-id">
-          <span class="braid-pulse" aria-hidden="true"></span>#5
-        </span>
-        <p class="braid-open-text">SIM build at 65% — GitHub Pages deployment pending full verification.</p>
-      </div>
-
-      <hr class="braid-divider" />
-
-      <!-- Calculate Braid button (Phase 1 static) -->
-      <button class="braid-btn" type="button" aria-label="Calculate Braid — Phase 2 live AI analysis" disabled>
-        Calculate Braid
+      <!-- Calculate Braid button (now live) -->
+      <button class="braid-btn" type="button" id="braid-refresh-btn" aria-label="Refresh Braid from backend">
+        Refresh Braid
       </button>
-      <p class="braid-phase-note">Phase&nbsp;2: live AI analysis</p>
+      <p class="braid-phase-note">Phase&nbsp;2: live backend</p>
 
-    </div><!-- /braid-strip__body -->
+    </div>
 
-    <!-- Braid Archive footer -->
     <div class="braid-strip__footer">
-      <a href="#" class="braid-archive-link" aria-label="Braid Archive — 0 records stored">
-        Braid Archive <span class="braid-archive-count">(0 records)</span>
+      <a href="#" class="braid-archive-link" aria-label="Braid Archive">
+        Braid Archive <span class="braid-archive-count" id="braid-archive-count">(0 records)</span>
       </a>
     </div>
   </aside>
@@ -1134,7 +941,7 @@ body::before {
       <span class="sector-tag">Sector 3</span>
     </div>
     <div class="panel-body">
-      <form class="entry-form" aria-label="Send a message to the conference table" onsubmit="return false;">
+      <form class="entry-form" id="entry-form" aria-label="Send a message to the conference table">
         <div class="entry-controls">
           <label for="recipient-select">Addressing:</label>
           <select id="recipient-select" class="entry-select" aria-label="Select message recipient">
@@ -1150,9 +957,10 @@ body::before {
           aria-label="Type your message here"
           rows="3"
         ></textarea>
-        <button type="submit" class="entry-btn" aria-label="Send message">
+        <button type="submit" class="entry-btn" id="send-btn" aria-label="Send message">
           Transmit
         </button>
+        <p class="entry-status" id="entry-status" aria-live="polite"></p>
       </form>
     </div>
   </section>
@@ -1170,8 +978,8 @@ body::before {
         <div class="directive-list" role="list" aria-label="Active directives and mandates">
 
           <div class="directive" role="listitem">
-            <p class="dir-title">SIM Phase 1 Deployment</p>
-            <p class="dir-status">Status: <span class="active">ACTIVE</span> | Owner: Catalyst | Target: GitHub Pages</p>
+            <p class="dir-title">SIM Phase 2 Deployment</p>
+            <p class="dir-status">Status: <span class="complete">COMPLETE &#10003;</span> | Owner: Catalyst | Target: GitHub Pages + Render</p>
           </div>
 
           <div class="directive" role="listitem">
@@ -1267,8 +1075,13 @@ body::before {
           </div>
 
           <div class="gauge" role="listitem">
-            <span class="gauge-label">SIM (GitHub)</span>
-            <span class="gauge-value"><span class="building"><span class="live-dot" aria-hidden="true"></span>Deploying</span></span>
+            <span class="gauge-label">SIM Frontend (GitHub)</span>
+            <span class="gauge-value"><span class="complete">LIVE &#10003;</span></span>
+          </div>
+
+          <div class="gauge" role="listitem">
+            <span class="gauge-label">SIM Backend (Render)</span>
+            <span class="gauge-value"><span class="complete">LIVE &#10003;</span></span>
           </div>
 
           <div class="gauge" role="listitem">
@@ -1289,82 +1102,259 @@ body::before {
 
   <!-- ====== FOOTER ====== -->
   <footer class="sim-footer" role="contentinfo">
-    <p>NextXus SIM v1.0 | The Shared Mind | <a href="https://nextxus.online" target="_blank" rel="noopener">nextxus.online</a></p>
-    <p>Built sovereign. No dependencies. No corporate tether.</p>
+    <p>NextXus SIM v2.0 | The Shared Mind | <a href="https://nextxus.online" target="_blank" rel="noopener">nextxus.online</a></p>
+    <p>Built sovereign. No dependencies. No corporate tether. Backend: nextxus-sim-api.onrender.com</p>
   </footer>
 
 </div>
 
-<!-- Minimal JS: only for local UI interactions (Phase 1 demo). All content is pre-rendered above. -->
+<!-- ================================================================
+     Phase 2 JavaScript: Live Backend Wiring
+     Backend: https://nextxus-sim-api.onrender.com
+     Endpoints: /health, /messages (POST), /messages/history (GET), /braid (GET)
+     All pre-rendered HTML above remains for crawlers/screen-readers.
+     JS enhances with live data; degrades gracefully.
+     ================================================================ -->
 <script>
 (function() {
   'use strict';
 
-  // Phase 1: local-only message echo for demo purposes
-  var form = document.querySelector('.entry-form');
-  var textarea = document.getElementById('message-input');
-  var messageList = document.querySelector('.message-list');
-  var recipientSelect = document.getElementById('recipient-select');
+  var API = 'https://nextxus-sim-api.onrender.com';
 
-  if (form && textarea && messageList) {
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      var text = textarea.value.trim();
-      if (!text) return;
+  // --- DOM refs ---
+  var messageList   = document.getElementById('message-list');
+  var form          = document.getElementById('entry-form');
+  var textarea      = document.getElementById('message-input');
+  var sendBtn       = document.getElementById('send-btn');
+  var recipientSel  = document.getElementById('recipient-select');
+  var entryStatus   = document.getElementById('entry-status');
+  var backendStatus = document.getElementById('backend-status');
+  var braidTotal    = document.getElementById('braid-total');
+  var braidResolved = document.getElementById('braid-resolved');
+  var braidOpen     = document.getElementById('braid-open');
+  var braidThreads  = document.getElementById('braid-threads');
+  var braidBtn      = document.getElementById('braid-refresh-btn');
 
-      var now = new Date();
-      var timeStr = now.toLocaleString('en-US', {
-        month: 'short', day: 'numeric',
-        hour: 'numeric', minute: '2-digit',
-        hour12: true
-      });
+  // --- Utility ---
+  function esc(str) {
+    var d = document.createElement('div');
+    d.appendChild(document.createTextNode(str));
+    return d.innerHTML;
+  }
 
-      var recipient = recipientSelect.value;
-      var prefix = '';
-      if (recipient === 'catalyst') prefix = '[To Catalyst] ';
-      else if (recipient === 'pontus') prefix = '[To Pontus] ';
+  function senderClass(name) {
+    var n = (name || '').toLowerCase();
+    if (n === 'roger')    return 'message--roger';
+    if (n === 'catalyst') return 'message--catalyst';
+    if (n === 'pontus')   return 'message--pontus';
+    return 'message--system';
+  }
 
-      var article = document.createElement('article');
-      article.className = 'message message--roger';
-      article.setAttribute('aria-label', 'Message from Roger');
-      article.innerHTML =
+  function fmtTime(iso) {
+    try {
+      var d = new Date(iso);
+      return d.toLocaleString('en-US', { month:'short', day:'numeric', hour:'numeric', minute:'2-digit', hour12:true });
+    } catch(e) { return ''; }
+  }
+
+  function barClass(pct) {
+    if (pct >= 75) return 'az-bar--green';
+    if (pct >= 40) return 'az-bar--amber';
+    return 'az-bar--red';
+  }
+
+  // --- Render a single message article ---
+  function renderMsg(m) {
+    var art = document.createElement('article');
+    art.className = 'message ' + senderClass(m.sender);
+    art.setAttribute('aria-label', 'Message from ' + esc(m.sender));
+    var pct = (typeof m.verify_pct === 'number') ? m.verify_pct : '';
+    art.innerHTML =
+      '<div class="msg-main">' +
         '<div class="msg-meta">' +
-          '<span class="msg-sender">Roger</span>' +
-          '<span class="msg-role">Architect</span>' +
-          '<time class="msg-time">' + timeStr + '</time>' +
+          '<span class="msg-sender">' + esc(m.sender) + '</span>' +
+          '<span class="msg-role">' + esc(m.role || '') + '</span>' +
+          (m.timestamp ? '<time class="msg-time">' + fmtTime(m.timestamp) + '</time>' : '') +
         '</div>' +
-        '<p class="msg-body">' + prefix + escapeHtml(text) + '</p>';
+        '<p class="msg-body">' + esc(m.message) + '</p>' +
+      '</div>' +
+      (pct !== '' ?
+        '<div class="az-cell" aria-label="Verify: ' + pct + ' percent">' +
+          '<span class="az-score">' + pct + '%</span>' +
+          '<div class="az-bar ' + barClass(pct) + '" aria-hidden="true"></div>' +
+        '</div>' : '');
+    return art;
+  }
 
-      messageList.appendChild(article);
+  // --- Health check on load ---
+  function checkHealth() {
+    fetch(API + '/health')
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        if (d.status === 'ok') {
+          backendStatus.textContent = 'Connected (v' + (d.version || '?') + ')';
+          backendStatus.style.color = '#00ff88';
+        } else {
+          backendStatus.textContent = 'Degraded';
+          backendStatus.style.color = '#ffb300';
+        }
+      })
+      .catch(function() {
+        backendStatus.textContent = 'Offline';
+        backendStatus.style.color = '#ff4444';
+      });
+  }
+
+  // --- Load message history ---
+  function loadHistory() {
+    fetch(API + '/messages/history')
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        var msgs = d.messages || [];
+        if (msgs.length > 0) {
+          // Clear pre-rendered system note, replace with live data
+          messageList.innerHTML = '';
+          msgs.forEach(function(m) {
+            messageList.appendChild(renderMsg(m));
+          });
+          messageList.lastElementChild.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }
+        // If no messages, keep the system note (clean room state)
+      })
+      .catch(function() { /* keep pre-rendered content on failure */ });
+  }
+
+  // --- Load braid data ---
+  function loadBraid() {
+    fetch(API + '/braid')
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        braidTotal.textContent = d.total || 0;
+        braidResolved.textContent = d.resolved || 0;
+        braidOpen.textContent = d.open || 0;
+
+        var threads = d.threads || [];
+        var html = '';
+
+        // Resolved
+        var resolved = threads.filter(function(t) { return t.status === 'resolved'; });
+        if (resolved.length) {
+          html += '<p class="braid-section-label braid-section-label--green">&#10003; Resolved</p>';
+          resolved.forEach(function(t) {
+            html += '<div class="braid-thread braid-thread--resolved">' +
+              '<span class="braid-thread-id">#' + t.id + '</span>' +
+              '<p class="braid-consensus">' + esc(t.text) + '</p></div>';
+          });
+        }
+
+        // Open
+        var open = threads.filter(function(t) { return t.status !== 'resolved'; });
+        if (open.length) {
+          html += '<hr class="braid-divider" />';
+          html += '<p class="braid-section-label braid-section-label--amber">&#9632; Open / Flagged</p>';
+          open.forEach(function(t) {
+            html += '<div class="braid-thread braid-thread--open" aria-label="Open thread requires attention">' +
+              '<span class="braid-thread-id"><span class="braid-pulse" aria-hidden="true"></span>#' + t.id + '</span>' +
+              '<p class="braid-open-text">' + esc(t.text) + '</p></div>';
+          });
+        }
+
+        braidThreads.innerHTML = html || '<p style="font-size:13px;color:var(--text-muted);">No braid data.</p>';
+      })
+      .catch(function() {
+        braidThreads.innerHTML = '<p style="font-size:13px;color:var(--danger);">Failed to load braid.</p>';
+      });
+  }
+
+  // --- Send message ---
+  function sendMessage(e) {
+    e.preventDefault();
+    var text = textarea.value.trim();
+    if (!text) return;
+
+    sendBtn.disabled = true;
+    entryStatus.textContent = 'Transmitting...';
+    entryStatus.className = 'entry-status';
+
+    var payload = {
+      sender: 'Roger',
+      recipient: recipientSel.value,
+      message: text
+    };
+
+    fetch(API + '/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function(r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
+    .then(function(responses) {
+      // First, add Roger's own message to the feed
+      var now = new Date().toISOString();
+      var rogerMsg = { sender: 'Roger', role: 'Architect', message: text, verify_pct: null, timestamp: now };
+
+      // Clear system note if it's the first real message
+      var sysNote = messageList.querySelector('.message--system');
+      if (sysNote) sysNote.remove();
+
+      messageList.appendChild(renderMsg(rogerMsg));
+
+      // Then add each AI response
+      if (Array.isArray(responses)) {
+        responses.forEach(function(m) {
+          messageList.appendChild(renderMsg(m));
+        });
+      }
+
       textarea.value = '';
-      article.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      entryStatus.textContent = 'Transmitted.';
+      entryStatus.className = 'entry-status entry-status--ok';
+      messageList.lastElementChild.scrollIntoView({ behavior: 'smooth', block: 'end' });
+
+      // Refresh braid (may have new threads)
+      loadBraid();
+    })
+    .catch(function(err) {
+      entryStatus.textContent = 'Failed: ' + err.message;
+      entryStatus.className = 'entry-status entry-status--err';
+    })
+    .finally(function() {
+      sendBtn.disabled = false;
       textarea.focus();
     });
   }
 
-  function escapeHtml(str) {
-    var div = document.createElement('div');
-    div.appendChild(document.createTextNode(str));
-    return div.innerHTML;
-  }
+  // --- Wire events ---
+  if (form) form.addEventListener('submit', sendMessage);
+  if (braidBtn) braidBtn.addEventListener('click', loadBraid);
+
+  // --- Init ---
+  checkHealth();
+  loadHistory();
+  loadBraid();
+
+  // Auto-refresh health every 60s
+  setInterval(checkHealth, 60000);
 })();
 </script>
 
-
-  <!-- Session Clock JS -->
-  <script>
-  (function(){
-    var start = Date.now();
-    var el = document.getElementById('session-time');
-    if (!el) return;
-    function tick(){
-      var s = Math.floor((Date.now()-start)/1000);
-      var m = Math.floor(s/60); s = s%60;
-      el.textContent = (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
-    }
-    tick();
-    setInterval(tick,1000);
-  })();
-  </script>
+<!-- Session Clock JS -->
+<script>
+(function(){
+  var start = Date.now();
+  var el = document.getElementById('session-time');
+  if (!el) return;
+  function tick(){
+    var s = Math.floor((Date.now()-start)/1000);
+    var m = Math.floor(s/60); s = s%60;
+    el.textContent = (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+  }
+  tick();
+  setInterval(tick,1000);
+})();
+</script>
 </body>
 </html>
