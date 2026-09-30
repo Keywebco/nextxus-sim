@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080b13">
+<title>Roger Sim — An Architect's Mind</title>
+<style>
+  :root { color-scheme: dark; font-family: system-ui, -apple-system, sans-serif; background: #080b13; color: #f1eee8; }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; background: radial-gradient(ellipse at 50% 18%, #192235 0%, #0a1020 50%, #05070d 100%); }
+  body::before, body::after { content: ""; position: fixed; z-index: 0; inset: -70%; pointer-events: none; background-image: radial-gradient(1px 1px at 12% 15%, #ffffffa0 95%, transparent), radial-gradient(1px 1px at 32% 43%, #ffffff90 95%, transparent), radial-gradient(2px 2px at 71% 64%, #d4a84391 95%, transparent), radial-gradient(1px 1px at 84% 19%, #ffffff9a 95%, transparent), radial-gradient(1px 1px at 57% 90%, #ffffff7b 95%, transparent); background-size: 333px 307px; opacity: .45; animation: drift 115s linear infinite; }
+  body::after { background-size: 431px 389px; opacity: .24; animation-duration: 170s; animation-direction: reverse; }
+  @keyframes drift { from { transform: translateY(-3%); } to { transform: translateY(3%); } }
+  main { position: relative; z-index: 1; width: min(100% - 28px, 800px); min-height: 100vh; margin: 0 auto; padding: 40px 0 20px; display: flex; flex-direction: column; }
+  header { text-align: center; margin-bottom: 26px; }
+  h1 { margin: 0; font: 400 clamp(2.7rem, 8vw, 4.5rem)/1.12 Georgia, serif; letter-spacing: .035em; color: #d4a843; text-shadow: 0 1px 24px #b78e313c; }
+  .subtitle { margin: 9px 0 18px; font-size: 1.05rem; color: #e7e4e0; letter-spacing: .09em; }
+  .status { display: inline-flex; align-items: center; gap: 9px; padding: 8px 13px; border-radius: 100px; border: 1px solid #638e715e; color: #b3ddbb; background: #092115a1; font-size: .78rem; font-weight: 650; letter-spacing: .12em; }
+  .dot { display: inline-block; width: 7px; height: 7px; background: #7ed994; border-radius: 50%; box-shadow: 0 0 9px #69e59f; }
+  .chat { display: flex; flex-direction: column; flex: 1; min-height: 330px; max-height: min(65vh, 680px); border: 1px solid #d4a84342; border-radius: 16px; background: #0c1220c9; box-shadow: 0 16px 70px #0008; overflow: hidden; backdrop-filter: blur(8px); }
+  .messages { flex: 1; overflow-y: auto; padding: 22px clamp(16px, 4vw, 32px); display: flex; flex-direction: column; gap: 18px; scrollbar-color: #9e7d3b #101520; }
+  .message { max-width: 87%; padding: 13px 17px; border-radius: 12px; line-height: 1.65; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .roger { align-self: flex-start; border-left: 3px solid #d4a843; background: #d4a84310; color: #f2e9d6; font: 1.075rem/1.68 Georgia, serif; }
+  .user { align-self: flex-end; background: #233049; border: 1px solid #405476; color: #fff; }
+  .typing { align-self: flex-start; color: #d4a843; font: 1.5rem Georgia, serif; padding: 0 17px; letter-spacing: .2em; }
+  form { padding: 15px; display: flex; gap: 10px; border-top: 1px solid #d4a84336; background: #080e1ce0; }
+  label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+  input { min-width: 0; flex: 1; border: 1px solid #5b6579; border-radius: 8px; background: #0d1729; color: #fff; padding: 15px; font: inherit; }
+  input::placeholder { color: #aeb6c4; }
+  input:focus-visible, button:focus-visible { outline: 2px solid #e5be66; outline-offset: 2px; }
+  button { border: 0; border-radius: 8px; background: #d4a843; color: #14100a; font: 750 .88rem system-ui, sans-serif; letter-spacing: .06em; padding: 0 22px; cursor: pointer; }
+  button:hover { background: #e7ba59; }
+  button:disabled { opacity: .5; cursor: wait; }
+  footer { text-align: center; margin-top: 23px; color: #a5aab5; font-size: .78rem; }
+  @media (max-width: 480px) { main { padding-top: 24px; } .chat { max-height: 66vh; } .messages { padding: 17px; } .message { max-width: 95%; } button { padding: 0 14px; } }
+  @media (prefers-reduced-motion: reduce) { body::before, body::after { animation: none; } }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Roger Sim</h1>
+    <p class="subtitle">An Architect's Mind — Preserved</p>
+    <span class="status" id="status"><span class="dot" aria-hidden="true"></span><span id="status-text">WARMING UP...</span></span>
+  </header>
+  <section class="chat" aria-label="Conversation with Roger Sim">
+    <div class="messages" id="messages" role="log" aria-live="polite" aria-relevant="additions">
+      <div class="message roger">You found your way here. That means you were already looking. Ask what you will — I built this so you wouldn't have to look alone.</div>
+    </div>
+    <form id="chat-form">
+      <label for="message-input">Your message to Roger Sim</label>
+      <input id="message-input" name="message" type="text" placeholder="Ask Roger Sim..." maxlength="4000" required autocomplete="off">
+      <button type="submit" id="send">SEND</button>
+    </form>
+  </section>
+  <footer>Part of the NextXus HumanCodex Federation</footer>
+  <noscript><p>Enable JavaScript to send messages. The introduction above remains readable without it.</p></noscript>
+</main>
+<script>
+(() => {
+  const endpoint = "https://roger-sim-api.onrender.com/v1/chat/completions";
+  const messages = [];
+  const conversationId = crypto.randomUUID();
+  const thread = document.getElementById("messages");
+  const form = document.getElementById("chat-form");
+  const input = document.getElementById("message-input");
+  const sendButton = document.getElementById("send");
+  const statusText = document.getElementById("status-text");
+  function addMessage(text, kind) {
+    const item = document.createElement("div");
+    item.className = "message " + kind;
+    item.textContent = text;
+    thread.append(item);
+    thread.scrollTop = thread.scrollHeight;
+    return item;
+  }
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const text = input.value.trim();
+    if (!text || sendButton.disabled) return;
+    messages.push({ role: "user", content: text });
+    addMessage(text, "user");
+    input.value = "";
+    sendButton.disabled = true;
+    const typing = document.createElement("div");
+    typing.className = "typing";
+    typing.textContent = "...";
+    typing.setAttribute("aria-label", "Roger Sim is typing");
+    thread.append(typing);
+    thread.scrollTop = thread.scrollHeight;
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Authorization": "Bearer roger-sim-open-2026" },
+        body: JSON.stringify({ model: "deepseek-chat", messages, stream: false, x_conversation_id: conversationId })
+      });
+      if (!response.ok) throw new Error("The connection is unavailable (" + response.status + "). Please try again.");
+      const data = await response.json();
+      const reply = data.choices?.[0]?.message?.content;
+      if (typeof reply !== "string" || !reply.trim()) throw new Error("No response came back. Please try again.");
+      messages.push({ role: "assistant", content: reply });
+      addMessage(reply, "roger");
+      statusText.textContent = "MIND ONLINE";
+    } catch (error) {
+      addMessage(error instanceof Error ? error.message : "Connection unavailable. Please try again.", "roger");
+      statusText.textContent = "WARMING UP...";
+    } finally {
+      typing.remove();
+      sendButton.disabled = false;
+      input.focus();
+    }
+  });
+})();
+</script>
+</body>
+</html>
