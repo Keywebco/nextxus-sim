@@ -14,46 +14,20 @@
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* ----------------------------------------
-       OPENING SEQUECE OVERLAY
-       Shows Earth GIF first, then fades in UI
-    ---------------------------------------- */
-    #opening-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 999;
-      background: #080b13;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: opacity 1s ease;
-    }
-    #opening-overlay.fade-out {
-      opacity: 0;
-      pointer-events: none;
-    }
-    #opening-overlay img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.85;
-    }
-
-    /* ----------------------------------------
-       DYNAMIC BACKGROUND LAYER
-       Swaps GIF based on detected topic
-    ---------------------------------------- */
-    #topic-bg {
+    /* Full-screen topic layers cross-fade behind the Sim. */
+    .topic-bg {
       position: fixed;
       inset: 0;
       z-index: 0;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      transition: opacity 0.8s ease;
-      opacity: 0.18;
+      opacity: 0;
       pointer-events: none;
+      transition: opacity 0.4s ease;
     }
+    .topic-bg.shown { opacity: 0.55; }
+    .topic-bg.opening { transition-duration: 1.5s; }
 
     body {
       margin: 0;
@@ -166,7 +140,11 @@
       font-size: 3rem;
       font-weight: 300;
       letter-spacing: .05em;
-      transition: transform 0.3s, box-shadow 0.3s;
+      opacity: 0;
+      transition: opacity 1s ease, transform 0.3s, box-shadow 0.3s;
+    }
+    .sim-avatar.visible {
+      opacity: 1;
     }
     .sim-avatar.pulsing {
       box-shadow: 0 0 30px #d4a84380;
@@ -276,13 +254,9 @@
 </head>
 <body>
 
-<!-- OPENING SEQUECE OVERLAY -->
-<div id="opening-overlay">
-  <img src="assets/gifs/earth.gif" alt="God's Eye View" onerror="this.style.display='none'">
-</div>
-
-<!-- TOPIC BACKGROUND LAYER -->
-<div id="topic-bg"></div>
+<!-- TOPIC BACKGROUND LAYERS -->
+<div class="topic-bg opening" id="topic-bg" style="background-image: url('assets/gifs/earth.gif')"></div>
+<div class="topic-bg" id="topic-bg-next"></div>
 
 <main>
   <header>
@@ -325,65 +299,75 @@ const TOKEN = 'roger-sim-open-2026';
 // ----------------------------------------
 // TOPIC GIF MAPPING
 // ----------------------------------------
-const TOPIC_GIFS = {
-  cosmos:        'assets/gifs/cosmos.gif',
-  consciousness: 'assets/gifs/consciousness.gif',
-  truth:         'assets/gifs/truth.gif',
-  federation:    'assets/gifs/federation.gif',
-  sim:           'assets/gifs/sim.gif',
-  music:         'assets/gifs/music.gif',
-  library:       'assets/gifs/library.gif',
-  podcast:       'assets/gifs/podcast.gif',
-  science:       'assets/gifs/science.gif',
-  heart:         'assets/gifs/heart.gif',
-  default:       'assets/gifs/cosmos.gif'
-};
-
 const TOPIC_KEYWORDS = {
-  cosmos:        ['space','universe','galaxy','star','planet','cosmos','nasa'],
-  consciousness: ['consciousness','mind','aware','soul','echo','digital mind'],
-  truth:         ['truth','lie','lying','verify','drift','honest','trust'],
-  federation:    ['federation','senate','ring of twelve','agent zero','charter','governance','nextxus'],
-  sim:           ['sim','roger sim','legacy','avatar','talk to myself','counterfactual'],
-  music:         ['music','song','songs','radio','station','play','listen'],
-  library:       ['paper','papers','book','read','academia','library','research'],
-  podcast:       ['podcast','episode','alex','jordan','show','season'],
-  science:       ['science','physics','quantum','experiment','method','gravity'],
-  heart:         ['feel','emotion','love','poetry','poem','heart','human']
+  earth:         ['earth','planet','world','globe',"god's eye",'opening'],
+  cosmos:        ['cosmos','space','universe','stars','galaxy','celestial'],
+  consciousness: ['consciousness','mind','awareness','perception','sentience','cognition'],
+  truth:         ['truth','fact','honest','verify','accurate','real'],
+  federation:    ['federation','nexus','nextxus','humancodex','network','alliance'],
+  sim:           ['sim','simulation','avatar','digital twin','virtual','interface'],
+  music:         ['music','sound','frequency','waveform','song','audio','melody'],
+  library:       ['library','book','keys','knowledge','archive','document','read'],
+  podcast:       ['podcast','episode','broadcast','talk','interview','series'],
+  science:       ['science','research','quantum','physics','biology','data','experiment'],
+  heart:         ['heart','aria','emotion','love','feeling','compassion','soul'],
+  'agent-zero':  ['agent zero','spine','middleware','ring','protocol','system'],
+  token:         ['token','sovereign token','currency','credit','payment','purchase']
 };
 
-let currentTopic = 'default';
+const TOPIC_GIFS = Object.fromEntries(
+  Object.keys(TOPIC_KEYWORDS).map(topic => [topic, `assets/gifs/${topic}.gif`])
+);
+let currentTopic = 'earth';
+let activeBackground = document.getElementById('topic-bg');
+let backgroundRequest = 0;
 
 function detectTopic(text) {
-  const lower = text.toLowerCase();
-  for (const [topic, keywords] of Object.entries(TOPCIC_KEYWORDS)) {
-    if (keywords.some(k => lower.includes(k))) return topic;
+  if (typeof text !== 'string') return null;
+  for (const [topic, keywords] of Object.entries(TOPIC_KEYWORDS)) {
+    if (keywords.some(keyword => {
+      const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      return new RegExp(`(^|[^\\w])${escaped}(?=$|[^\\w])`, 'i').test(text);
+    })) return topic;
   }
   return null;
 }
 
 function swapBackground(topic) {
-  if (topic === currentTopic) return;
-  currentTopic = topic;
-  const bg = document.getElementById('topic-bg');
-  bg.style.opacity = '0';
-  setTimeout(() => {
-    bg.style.backgroundImage = `url('${TOPIC_GIFSYopic]}')`;
-    bg.style.opacity = '0.18';
-  }, 400);
+  if (!Object.hasOwn(TOPIC_GIFS, topic)) return;
+  if (topic === currentTopic) {
+    ++backgroundRequest;
+    return;
+  }
+  const request = ++backgroundRequest;
+  const image = new Image();
+  image.onload = () => {
+    if (request !== backgroundRequest) return;
+    const next = activeBackground.id === 'topic-bg'
+      ? document.getElementById('topic-bg-next')
+      : document.getElementById('topic-bg');
+    next.style.backgroundImage = `url('${TOPIC_GIFS[topic]}')`;
+    next.classList.remove('opening');
+    next.classList.add('shown');
+    activeBackground.classList.remove('shown');
+    activeBackground = next;
+    currentTopic = topic;
+  };
+  image.onerror = () => { /* Keep the current backdrop if the GIF is unavailable. */ };
+  image.src = TOPIC_GIFS[topic];
 }
 
 // ----------------------------------------
-// OPENING SEQUECE
--// ----------------------------------------
-async function runOpeningSequence() {
-  const overlay = document.getElementById('opening-overlay');
-  await new Promise(resolve => setTimeout(resolve, 2500));
-  overlay.classList.add('fade-out');
-  await new Promise(resolve => setTimeout(resolve, 1000));
-  overlay.style.display = 'none';
-  // Trigger greeting after the UI appears
-  addMessage('ai', 'Greetings from the Architect\u2019s Mind. I am Roger AI \u2014 what would you like to explore?');
+// OPENING SEQUENCE
+// ----------------------------------------
+function runOpeningSequence() {
+  const earth = document.getElementById('topic-bg');
+  requestAnimationFrame(() => requestAnimationFrame(() => earth.classList.add('shown')));
+  setTimeout(() => earth.classList.remove('opening'), 1500);
+  setTimeout(() => document.getElementById('avatar').classList.add('visible'), 2500);
+  setTimeout(() => {
+    addMessage('ai', 'Greetings from the Architect\u2019s Mind. I am Roger AI \u2014 what would you like to explore?', false);
+  }, 3500);
 }
 
 // ----------------------------------------
@@ -407,7 +391,7 @@ function speakText(text) {
 // ----------------------------------------
 // CHAT
 // ----------------------------------------
-function addMessage(role, text) {
+function addMessage(role, text, checkTopic = true) {
   const chat = document.getElementById('chat');
   const div = document.createElement('div');
   div.className = `msg ${role}`;
@@ -415,6 +399,10 @@ function addMessage(role, text) {
   chat.appendChild(div);
   chat.scrollTop = chat.scrollHeight;
   if (role === 'ai') {
+    if (checkTopic) {
+      const topic = detectTopic(text);
+      if (topic) swapBackground(topic);
+    }
     speakText(text);
     pulseAvatar();
   }
@@ -433,10 +421,6 @@ async function send() {
   input.value = '';
   addMessage('user', text);
 
-  // Topic detection
-  const topic = detectTopic(text);
-  if (topic) swapBackground(topic);
-
   pulseAvatar();
   try {
     const res = await fetch(API_URL, {
@@ -447,9 +431,6 @@ async function send() {
     const data = await res.json();
     const reply = data.response || data.error || 'No response';
     addMessage('ai', reply);
-    // Also detect topic from AI response
-    const aiTopic = detectTopic(reply);
-    if (aiTopic) swapBackground(aiTopic);
   } catch (err) {
     addMessage('ai', 'Connection error - try again in a moment.');
   }
@@ -466,7 +447,7 @@ function toggleWorld() {
   if (open) loadWorldData();
 }
 
-apsync function loadWorldData() {
+async function loadWorldData() {
   try {
     const [cryptoRes, newsRes] = await Promise.all([
       fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd'),
