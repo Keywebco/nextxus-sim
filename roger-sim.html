@@ -19,6 +19,32 @@
   .status { display: inline-flex; align-items: center; gap: 9px; padding: 8px 13px; border-radius: 100px; border: 1px solid #638e715e; color: #b3ddbb; background: #092115a1; font-size: .78rem; font-weight: 650; letter-spacing: .12em; }
   .dot { display: inline-block; width: 7px; height: 7px; background: #7ed994; border-radius: 50%; box-shadow: 0 0 9px #69e59f; }
   .chat { display: flex; flex-direction: column; flex: 1; min-height: 330px; max-height: min(65vh, 680px); border: 1px solid #d4a84342; border-radius: 16px; background: #0c1220c9; box-shadow: 0 16px 70px #0008; overflow: hidden; backdrop-filter: blur(8px); }
+  .chat-top { position: relative; flex: none; text-align: center; padding: 16px 52px 12px; border-bottom: 1px solid #d4a84326; }
+  .sim-avatar { display: grid; place-items: center; width: 120px; height: 120px; margin: 0 auto; border: 2px solid #d4a843; border-radius: 50%; background: #050505; color: #d4a843; box-shadow: 0 0 20px #d4a8434a; font: 78px/1 Georgia, serif; }
+  .sim-avatar.is-thinking { animation: avatar-pulse 2.2s ease-in-out infinite; }
+  @keyframes avatar-pulse { 50% { box-shadow: 0 0 38px 10px #d4a843a6; } }
+  .avatar-name { margin: 9px 0 0; color: #d4a843; font-size: .8rem; font-weight: 700; letter-spacing: .18em; font-variant: small-caps; }
+  .avatar-caption { margin: 3px 0 0; color: #b7b9c1; font-size: .78rem; }
+  .chat-description { margin: 9px auto 0; max-width: 630px; color: #c6c6ce; font-size: .76rem; line-height: 1.4; }
+  .mute-toggle { position: absolute; top: 14px; right: 14px; width: 40px; height: 40px; padding: 0; border: 1px solid #d4a84388; border-radius: 8px; background: #14171f; color: #f3db9d; font-size: 1.2rem; }
+  .mute-toggle:hover { background: #28251a; }
+  .world-panel { position: fixed; z-index: 999; right: 12px; bottom: 12px; display: flex; flex-direction: column; width: 280px; height: 220px; border-top: 2px solid #d4a843; border-radius: 10px 10px 0 0; background: #0a0a14e6; box-shadow: 0 7px 25px #000a; color: #eee5d6; backdrop-filter: blur(8px); overflow: hidden; }
+  .world-panel.expanded { height: 380px; }
+  .world-header { display: flex; align-items: center; justify-content: space-between; flex: none; min-height: 40px; padding: 4px 12px; border-bottom: 1px solid #d4a84338; }
+  .world-header h2, .world-panel h3 { margin: 0; color: #d4a843; font-size: .77rem; letter-spacing: .09em; }
+  .world-toggle { padding: 4px 10px; border: 1px solid #d4a84366; background: #1b1b24; color: #f1cf83; font-size: .8rem; }
+  .world-content { flex: 1; min-height: 0; overflow-y: auto; padding: 10px 13px 2px; }
+  .world-panel h3 { font-size: .68rem; }
+  .world-prices { margin: 7px 0 0; }
+  .world-prices div { display: flex; justify-content: space-between; gap: 10px; margin: 4px 0; font-size: .8rem; }
+  .world-prices dt { font-weight: 700; }
+  .world-prices dd { margin: 0; font-variant-numeric: tabular-nums; }
+  .world-news { display: none; margin-top: 13px; }
+  .world-panel.expanded .world-news { display: block; }
+  .world-news ol { margin: 7px 0 0; padding-left: 20px; font-size: .73rem; line-height: 1.35; }
+  .world-news li { margin-bottom: 7px; overflow-wrap: anywhere; }
+  .world-source { color: #bbb7ad; }
+  .world-updated { flex: none; margin: 0; padding: 8px 13px; border-top: 1px solid #d4a84338; color: #aaaab2; font-size: .7rem; }
   .messages { flex: 1; overflow-y: auto; padding: 22px clamp(16px, 4vw, 32px); display: flex; flex-direction: column; gap: 18px; scrollbar-color: #9e7d3b #101520; }
   .message { max-width: 87%; padding: 13px 17px; border-radius: 12px; line-height: 1.65; white-space: pre-wrap; overflow-wrap: anywhere; }
   .roger { align-self: flex-start; border-left: 3px solid #d4a843; background: #d4a84310; color: #f2e9d6; font: 1.075rem/1.68 Georgia, serif; }
@@ -34,8 +60,10 @@
   button:hover { background: #e7ba59; }
   button:disabled { opacity: .5; cursor: wait; }
   footer { text-align: center; margin-top: 23px; color: #a5aab5; font-size: .78rem; }
-  @media (max-width: 480px) { main { padding-top: 24px; } .chat { max-height: 66vh; } .messages { padding: 17px; } .message { max-width: 95%; } button { padding: 0 14px; } }
-  @media (prefers-reduced-motion: reduce) { body::before, body::after { animation: none; } }
+  @media (min-width: 800px) and (max-width: 1400px) { main { width: min(calc(100% - 320px), 800px); margin-left: max(14px, calc((100vw - 300px - min(800px, 100vw - 320px)) / 2)); margin-right: 0; } }
+  @media (min-width: 481px) and (max-width: 799px) { main { padding-bottom: 244px; } }
+  @media (max-width: 480px) { main { padding-top: 24px; padding-bottom: 244px; } .chat { max-height: min(66vh, calc(100dvh - 424px)); } .messages { padding: 17px; } .message { max-width: 95%; } button { padding: 0 14px; } .chat-top { padding: 12px 48px 10px; } .world-panel { width: 95vw; right: auto; left: 50%; transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { body::before, body::after, .sim-avatar.is-thinking { animation: none; } }
 </style>
 </head>
 <body>
@@ -46,6 +74,13 @@
     <span class="status" id="status"><span class="dot" aria-hidden="true"></span><span id="status-text">WARMING UP...</span></span>
   </header>
   <section class="chat" aria-label="Conversation with Roger Sim">
+    <div class="chat-top">
+      <div class="sim-avatar" id="sim-avatar" aria-hidden="true">R</div>
+      <p class="avatar-name">ROGER SIM</p>
+      <p class="avatar-caption">Speak. He listens.</p>
+      <p class="chat-description">Roger Sim — Text Chat Interface. Ask questions and receive responses from an AI trained on Roger Keyserling's philosophy and methodology.</p>
+      <button class="mute-toggle" id="mute-toggle" type="button" aria-label="Mute Roger Sim voice" aria-pressed="false" title="Mute Roger Sim voice">🔊</button>
+    </div>
     <div class="messages" id="messages" role="log" aria-live="polite" aria-relevant="additions">
       <div class="message roger">You found your way here. That means you were already looking. Ask what you will — I built this so you wouldn't have to look alone.</div>
     </div>
@@ -56,8 +91,22 @@
     </form>
   </section>
   <footer>Part of the NextXus HumanCodex Federation</footer>
-  <noscript><p>Enable JavaScript to send messages. The introduction above remains readable without it.</p></noscript>
+  <noscript><p>Roger Sim — Text Chat Interface. Ask questions and receive responses from an AI trained on Roger Keyserling's philosophy and methodology. Enable JavaScript to send messages and load live world data. BTC, ETH, and SOL prices are unavailable without JavaScript.</p></noscript>
 </main>
+<aside class="world-panel" id="world-panel" aria-label="World now">
+  <div class="world-header"><h2>🌐 WORLD NOW</h2><button class="world-toggle" id="world-toggle" type="button" aria-label="Expand world data" aria-expanded="false" aria-controls="world-news">▼</button></div>
+  <div class="world-content">
+    <section aria-label="Cryptocurrency prices"><h3>CRYPTO · USD</h3>
+      <dl class="world-prices">
+        <div><dt>BTC</dt><dd id="btc-price">Price loading…</dd></div>
+        <div><dt>ETH</dt><dd id="eth-price">Price loading…</dd></div>
+        <div><dt>SOL</dt><dd id="sol-price">Price loading…</dd></div>
+      </dl>
+    </section>
+    <section class="world-news" id="world-news" aria-label="Latest news"><h3>NEWS</h3><ol id="world-headlines"><li>Headlines loading…</li></ol></section>
+  </div>
+  <p class="world-updated" id="world-updated">↻ Waiting for world data</p>
+</aside>
 <script>
 (() => {
   const endpoint = "https://roger-sim-api.onrender.com/v1/chat/completions";
@@ -68,6 +117,103 @@
   const input = document.getElementById("message-input");
   const sendButton = document.getElementById("send");
   const statusText = document.getElementById("status-text");
+  const avatar = document.getElementById("sim-avatar");
+  const muteButton = document.getElementById("mute-toggle");
+  const worldPanel = document.getElementById("world-panel");
+  const worldToggle = document.getElementById("world-toggle");
+  const worldUpdated = document.getElementById("world-updated");
+  let worldFetchedAt = null;
+  let muted = false;
+  try { muted = localStorage.getItem("roger-sim-muted") === "true"; } catch { /* Storage may be disabled. */ }
+  function updateMuteButton() {
+    muteButton.textContent = muted ? "🔇" : "🔊";
+    muteButton.setAttribute("aria-label", muted ? "Unmute Roger Sim voice" : "Mute Roger Sim voice");
+    muteButton.setAttribute("title", muted ? "Unmute Roger Sim voice" : "Mute Roger Sim voice");
+    muteButton.setAttribute("aria-pressed", String(muted));
+  }
+  updateMuteButton();
+  muteButton.addEventListener("click", () => {
+    muted = !muted;
+    try { localStorage.setItem("roger-sim-muted", String(muted)); } catch { /* Storage may be disabled. */ }
+    if (muted && window.speechSynthesis) window.speechSynthesis.cancel();
+    updateMuteButton();
+  });
+  function speakResponse(text) {
+    if (muted || !window.speechSynthesis || !window.SpeechSynthesisUtterance) return;
+    window.speechSynthesis.cancel();
+    const utt = new SpeechSynthesisUtterance(text);
+    utt.rate = 0.92;
+    utt.pitch = 0.88;
+    utt.volume = 1.0;
+    const voices = window.speechSynthesis.getVoices();
+    const preferred = voices.find(v => v.name.includes("Google US English") || v.name.includes("Daniel") || v.name.includes("Alex") || (v.lang === "en-US" && v.localService));
+    if (preferred) utt.voice = preferred;
+    window.speechSynthesis.speak(utt);
+  }
+  worldToggle.addEventListener("click", () => {
+    const expanded = worldPanel.classList.toggle("expanded");
+    worldToggle.textContent = expanded ? "▲" : "▼";
+    worldToggle.setAttribute("aria-expanded", String(expanded));
+    worldToggle.setAttribute("aria-label", expanded ? "Collapse world data" : "Expand world data");
+  });
+  function formatPrice(value) {
+    const raw = value && typeof value === "object" ? value.usd : value;
+    const number = Number(raw);
+    return raw == null || raw === "" || !Number.isFinite(number) || number < 0
+      ? "Unavailable" : "$" + number.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+  function updateWorldAge() {
+    if (worldFetchedAt === null) return;
+    const minutes = Math.max(0, Math.floor((Date.now() - worldFetchedAt) / 60000));
+    worldUpdated.textContent = "↻ updated " + minutes + " min ago";
+  }
+  async function refreshWorld() {
+    try {
+      const response = await fetch("https://roger-sim-api.onrender.com/world");
+      if (!response.ok) throw new Error("World data unavailable");
+      const data = await response.json();
+      const crypto = data.crypto || {};
+      for (const [id, key] of [["btc-price", "bitcoin"], ["eth-price", "ethereum"], ["sol-price", "solana"]]) {
+        document.getElementById(id).textContent = formatPrice(crypto[key]);
+      }
+      const headlines = document.getElementById("world-headlines");
+      headlines.replaceChildren();
+      const news = Array.isArray(data.news) ? data.news.slice(0, 3) : [];
+      for (const article of news) {
+        if (!article || typeof article.title !== "string") continue;
+        const item = document.createElement("li");
+        const title = article.title.length > 60 ? article.title.slice(0, 59) + "…" : article.title;
+        item.append(document.createTextNode(title));
+        let source = article.author || article.source;
+        if (!source && article.link) {
+          try { source = new URL(article.link).hostname.replace(/^www\./, ""); } catch { /* Invalid source URL. */ }
+        }
+        if (source && typeof source === "string") {
+          const label = document.createElement("span");
+          label.className = "world-source";
+          label.textContent = " — " + source.slice(0, 40);
+          item.append(label);
+        }
+        headlines.append(item);
+      }
+      if (!headlines.childElementCount) {
+        const item = document.createElement("li");
+        item.textContent = "Headlines unavailable";
+        headlines.append(item);
+      }
+      const timestamp = Date.parse(data.fetched_at);
+      worldFetchedAt = Number.isFinite(timestamp) ? timestamp : Date.now();
+      updateWorldAge();
+    } catch {
+      if (worldFetchedAt === null) {
+        for (const id of ["btc-price", "eth-price", "sol-price"]) document.getElementById(id).textContent = "Unavailable";
+        worldUpdated.textContent = "↻ World data unavailable";
+      }
+    }
+  }
+  refreshWorld();
+  setInterval(refreshWorld, 5 * 60 * 1000);
+  setInterval(updateWorldAge, 60 * 1000);
   function addMessage(text, kind) {
     const item = document.createElement("div");
     item.className = "message " + kind;
@@ -84,6 +230,7 @@
     addMessage(text, "user");
     input.value = "";
     sendButton.disabled = true;
+    avatar.classList.add("is-thinking");
     const typing = document.createElement("div");
     typing.className = "typing";
     typing.textContent = "...";
@@ -102,6 +249,7 @@
       if (typeof reply !== "string" || !reply.trim()) throw new Error("No response came back. Please try again.");
       messages.push({ role: "assistant", content: reply });
       addMessage(reply, "roger");
+      speakResponse(reply);
       statusText.textContent = "MIND ONLINE";
     } catch (error) {
       messages.pop();
@@ -110,6 +258,7 @@
       statusText.textContent = "WARMING UP...";
     } finally {
       typing.remove();
+      avatar.classList.remove("is-thinking");
       sendButton.disabled = false;
       input.focus();
     }
