@@ -23,6 +23,7 @@
   .message { max-width: 87%; padding: 13px 17px; border-radius: 12px; line-height: 1.65; white-space: pre-wrap; overflow-wrap: anywhere; }
   .roger { align-self: flex-start; border-left: 3px solid #d4a843; background: #d4a84310; color: #f2e9d6; font: 1.075rem/1.68 Georgia, serif; }
   .user { align-self: flex-end; background: #233049; border: 1px solid #405476; color: #fff; }
+  .notice { align-self: center; border: 1px solid #736a59; background: #201d1a; color: #e3d5bc; font-size: .9rem; }
   .typing { align-self: flex-start; color: #d4a843; font: 1.5rem Georgia, serif; padding: 0 17px; letter-spacing: .2em; }
   form { padding: 15px; display: flex; gap: 10px; border-top: 1px solid #d4a84336; background: #080e1ce0; }
   label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
@@ -103,7 +104,9 @@
       addMessage(reply, "roger");
       statusText.textContent = "MIND ONLINE";
     } catch (error) {
-      addMessage(error instanceof Error ? error.message : "Connection unavailable. Please try again.", "roger");
+      messages.pop();
+      input.value = text;
+      addMessage(error instanceof Error ? error.message : "Connection unavailable. Please try again.", "notice");
       statusText.textContent = "WARMING UP...";
     } finally {
       typing.remove();
