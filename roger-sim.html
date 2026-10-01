@@ -293,8 +293,10 @@
 </div>
 
 <script>
-const API_URL = 'https://roger-sim-api.onorender.com/chat';
-const TOKEN = 'roger-sim-open-2026';
+const API_BASE = 'https://roger-sim-api.onrender.com';
+// Chat goes through the server-side proxy; the bridge token never reaches the browser.
+const API_URL = API_BASE + '/proxy/chat';
+const chatHistory = [];
 
 // ----------------------------------------
 // TOPIC GIF MAPPING
@@ -423,15 +425,20 @@ async function send() {
 
   pulseAvatar();
   try {
+    chatHistory.push({role: 'user', content: text});
     const res = await fetch(API_URL, {
       method: 'POST',
-      headers: {'Content-Type':'application/json','Authorization':`Bearer ${TOKEN}`},
-      body: JSON.stringify({message: text})
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({model: 'deepseek-chat', messages: chatHistory.slice(-20), stream: false})
     });
     const data = await res.json();
-    const reply = data.response || data.error || 'No response';
-    addMessage('ai', reply);
+    const reply = (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content)
+      || (data.error && (data.error.message || data.error)) || 'No response';
+    if (res.ok && data.choices) chatHistory.push({role: 'assistant', content: reply});
+    else chatHistory.pop();
+    addMessage('ai', String(reply));
   } catch (err) {
+    if (chatHistory.length && chatHistory[chatHistory.length - 1].role === 'user') chatHistory.pop();
     addMessage('ai', 'Connection error - try again in a moment.');
   }
 }
@@ -451,7 +458,7 @@ async function loadWorldData() {
   try {
     const [cryptoRes, newsRes] = await Promise.all([
       fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd'),
-      fetch('https://roger-sim-api.onorender.com/world')
+      fetch(API_BASE + '/world')
     ]);
     const crypto = await cryptoRes.json();
     document.getElementById('btc').textContent = `$${crypto.bitcoin.usd.toLocaleString()}`;
@@ -460,7 +467,8 @@ async function loadWorldData() {
     const world = await newsRes.json();
     const headline = world.headlines || world.news || world.topics;
     if (headline && headline.length) {
-      document.getElementById('newsItem').textContent = Array.isArray(headline) ? headline[0] : string(headline);
+      const first = Array.isArray(headline) ? headline[0] : headline;
+      document.getElementById('newsItem').textContent = (first && first.title) ? first.title : String(first);
     }
   } catch (e) { console.error('World data error', e); }
 }
