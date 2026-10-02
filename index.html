@@ -814,6 +814,18 @@ body::after {
   flex: 1;
   min-width: 0;
 }
+
+/* ======== ONE-ON-ONE SIM NAV ======== */
+.sim-minds-nav { padding: 6px 0 12px; text-align: center; }
+.sim-minds-nav h2 { font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
+.sim-minds-nav ul { list-style: none; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 0; padding: 0; }
+.sim-minds-nav a { display: inline-block; padding: 7px 16px; border-radius: 20px; font-weight: 600; text-decoration: none; background: var(--bg-panel); border: 1px solid; }
+.sim-minds-nav a:hover, .sim-minds-nav a:focus-visible { background: #ffffff14; }
+.sim-minds-nav a:focus-visible { outline: 3px solid #ffffff; outline-offset: 2px; }
+.sim-minds-nav .m-roger    { color: #d4a843; border-color: #d4a843; }
+.sim-minds-nav .m-aria     { color: #ff69b4; border-color: #ff69b4; }
+.sim-minds-nav .m-catalyst { color: #00d4ff; border-color: #00d4ff; }
+.sim-minds-nav .m-muse     { color: #c084fc; border-color: #a855f7; }
 </style>
 </head>
 <body>
@@ -843,6 +855,17 @@ body::after {
     <span class="presence-chip presence-chip--pontus">
       <span class="live-dot" aria-hidden="true"></span> Pontus — Librarian
     </span>
+  </nav>
+
+  <!-- ONE-ON-ONE SIM PAGES -->
+  <nav class="sim-minds-nav" aria-labelledby="sim-minds-heading">
+    <h2 id="sim-minds-heading">Talk one-on-one with a Mind</h2>
+    <ul>
+      <li><a href="roger-sim.html" class="m-roger">Roger AI — The Mind</a></li>
+      <li><a href="aria-sim.html" class="m-aria">Aria — The Heart</a></li>
+      <li><a href="catalyst-sim.html" class="m-catalyst">The Catalyst — Authority</a></li>
+      <li><a href="muse-sim.html" class="m-muse">Muse — The Voice</a></li>
+    </ul>
   </nav>
 
   <div class="session-meta">
