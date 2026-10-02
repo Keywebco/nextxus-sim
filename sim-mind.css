@@ -1,0 +1,155 @@
+/* NextXus Federation: shared styles for the one-on-one Mind Sim pages.
+   Each page sets --accent, --accent2, --accent-rgb and --btn-text. */
+:root {
+  --bg: #080b13;
+  --text: #f1eee8;
+  color-scheme: dark;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Full-screen topic layers cross-fade behind the Sim. */
+.topic-bg {
+  position: fixed; inset: 0; z-index: 0;
+  background-size: cover; background-position: center; background-repeat: no-repeat;
+  opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+}
+.topic-bg.shown { opacity: 0.55; }
+.topic-bg.opening { transition-duration: 1.5s; }
+
+body {
+  margin: 0; min-height: 100vh;
+  background: radial-gradient(ellipse at 50% 18%, #192235 0%, #0a1020 50%, #05070d 100%);
+  color: var(--text);
+}
+body::before, body::after {
+  content: ""; position: fixed; z-index: 0; inset: -70%; pointer-events: none;
+  background-image:
+    radial-gradient(1px 1px at 12% 15%, #ffffffa0 95%, transparent),
+    radial-gradient(1px 1px at 32% 43%, #ffffff90 95%, transparent),
+    radial-gradient(2px 2px at 71% 64%, rgba(var(--accent-rgb),.57) 95%, transparent),
+    radial-gradient(1px 1px at 84% 19%, #ffffff9a 95%, transparent),
+    radial-gradient(1px 1px at 57% 90%, #ffffff7b 95%, transparent);
+  background-size: 333px 307px; opacity: .45; animation: drift 115s linear infinite;
+}
+body::after { background-size: 431px 389px; opacity: .24; animation-duration: 170s; animation-direction: reverse; }
+@keyframes drift { from { transform: translateY(-3%); } to { transform: translateY(3%); } }
+@media (prefers-reduced-motion: reduce) {
+  body::before, body::after { animation: none; }
+  .topic-bg, .sim-avatar { transition: none; }
+}
+
+/* Skip link: off-screen until focused, then fully visible. */
+.skip-link {
+  position: absolute; top: -100px; left: 14px; z-index: 999;
+  background: var(--accent); color: var(--btn-text); padding: 10px 16px;
+  border-radius: 8px; font-weight: 700; text-decoration: none;
+}
+.skip-link:focus { top: 14px; }
+
+/* Federation navigation */
+.sim-nav { position: relative; z-index: 2; padding: 14px 14px 0; }
+.sim-nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.sim-nav a {
+  display: inline-block; padding: 8px 14px; border-radius: 100px;
+  border: 1px solid rgba(var(--accent-rgb),.45); background: #0c1220e0;
+  color: #f1eee8; text-decoration: none; font-size: .95rem; font-weight: 600;
+}
+.sim-nav a:hover { border-color: var(--accent); color: var(--accent); }
+.sim-nav a[aria-current="page"] { background: var(--accent); color: var(--btn-text); border-color: var(--accent); }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid #ffffff; outline-offset: 2px; }
+
+main {
+  position: relative; z-index: 1;
+  width: min(100% - 28px, 800px); min-height: 100vh;
+  margin: 0 auto; padding: 28px 0 20px;
+  display: flex; flex-direction: column;
+}
+header.page-head { text-align: center; margin-bottom: 26px; }
+h1 {
+  margin: 0; font: 400 clamp(2.7rem, 8vw, 4.5rem)/1.12 Georgia, serif;
+  letter-spacing: .035em; color: var(--accent);
+  text-shadow: 0 1px 24px rgba(var(--accent-rgb),.24);
+}
+.subtitle { margin: 9px 0 18px; font-size: 1.05rem; color: #e7e4e0; letter-spacing: .09em; }
+.status {
+  display: inline-flex; align-items: center; gap: 9px; padding: 8px 13px;
+  border-radius: 100px; border: 1px solid #638e715e; color: #b3ddbb; background: #092115a1;
+  font-size: .78rem; font-weight: 650; letter-spacing: .12em;
+}
+.dot { display: inline-block; width: 7px; height: 7px; background: #7ed994; border-radius: 50%; box-shadow: 0 0 9px #69e59f; }
+
+.chat {
+  display: flex; flex-direction: column; flex: 1;
+  min-height: 330px; max-height: min(72vh, 760px);
+  border: 1px solid rgba(var(--accent-rgb),.26); border-radius: 16px;
+  background: #0c1220c9; box-shadow: 0 16px 70px #0008;
+  overflow: hidden; backdrop-filter: blur(8px);
+}
+.chat-top {
+  position: relative; flex: none; text-align: center;
+  padding: 16px 52px 12px; border-bottom: 1px solid rgba(var(--accent-rgb),.15);
+}
+/* CSS-generated avatar: the Mind's initial on a radial gradient in its colors. */
+.sim-avatar {
+  width: 140px; height: 140px; margin: 0 auto; border-radius: 50%;
+  background: radial-gradient(circle, var(--accent), var(--accent2));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 4rem; color: #ffffff; font-weight: bold;
+  text-shadow: 0 2px 10px rgba(0,0,0,.45);
+  border: 3px solid var(--accent);
+  box-shadow: 0 0 30px rgba(var(--accent-rgb),.4);
+  transition: opacity 1s ease, transform 0.3s, box-shadow 0.3s;
+}
+/* Fade-in only when JS runs; without JS the avatar is always visible. */
+.js .sim-avatar { opacity: 0; }
+.js .sim-avatar.visible { opacity: 1; }
+.sim-avatar.pulsing { box-shadow: 0 0 46px rgba(var(--accent-rgb),.75); transform: scale(1.05); }
+.sim-name { font-size: 1.15rem; color: var(--accent); margin-top: 10px; font-weight: 600; }
+.sim-intro { margin: 6px auto 0; max-width: 520px; color: #e7e4e0; font-size: .98rem; line-height: 1.5; }
+.mute-btn {
+  position: absolute; top: 12px; right: 12px;
+  background: #080b13; border: 1px solid rgba(var(--accent-rgb),.5); border-radius: 8px;
+  color: var(--accent); padding: 6px 10px; cursor: pointer; font-size: .85rem; font-weight: 600;
+}
+.chat-body { flex: 1; overflow-y: auto; padding: 18px 16px; scroll-behavior: smooth; }
+.msg { max-width: 80%; padding: 11px 14px; border-radius: 12px; line-height: 1.55; font-size: 1rem; margin-bottom: 10px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.msg.user { margin-left: auto; background: #141d32; border: 1px solid rgba(var(--accent-rgb),.3); color: #f1eee8; }
+.msg.ai { margin-right: auto; background: #0d1426; border: 1px solid rgba(var(--accent-rgb),.22); color: #f1eee8; }
+.msg .who { display: block; font-size: .75rem; font-weight: 700; letter-spacing: .06em; color: var(--accent); margin-bottom: 3px; }
+.msg.thinking { opacity: .75; font-style: italic; }
+.chat-input-area { flex: none; display: flex; gap: 10px; padding: 12px 14px; border-top: 1px solid rgba(var(--accent-rgb),.15); }
+.chat-input-area input {
+  flex: 1; min-width: 0; padding: 11px 14px; border-radius: 10px;
+  border: 1px solid rgba(var(--accent-rgb),.4); background: #080b13; color: #f1eee8; font-size: 1rem;
+}
+.chat-input-area button {
+  padding: 11px 18px; border-radius: 10px; background: var(--accent); color: var(--btn-text);
+  border: none; font-weight: 700; cursor: pointer; font-size: 1rem;
+}
+.chat-input-area button:disabled { opacity: .6; cursor: wait; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+.noscript-note { margin: 12px 16px; padding: 12px 14px; border: 1px solid rgba(var(--accent-rgb),.5); border-radius: 10px; background: #0d1426; line-height: 1.5; }
+
+.principles { margin-top: 18px; text-align: center; color: #e7e4e0; font-size: .92rem; line-height: 1.6; }
+.principles strong { color: var(--accent); }
+footer.page-foot { margin-top: 14px; text-align: center; font-size: .85rem; color: #c9c5bf; }
+footer.page-foot a { color: var(--accent); }
+
+/* WORLD PANEL */
+.world-panel {
+  position: fixed; bottom: 20px; right: 20px; width: 280px;
+  border: 1px solid rgba(var(--accent-rgb),.25); border-radius: 12px;
+  background: #0c1220f0; backdrop-filter: blur(10px);
+  z-index: 100; overflow: hidden; font-size: .85rem;
+}
+.world-header {
+  width: 100%; padding: 10px 14px; border: none; border-bottom: 1px solid rgba(var(--accent-rgb),.12);
+  background: none; color: var(--accent); font-weight: 650; font-size: .9rem; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center; text-align: left;
+}
+.world-body { padding: 12px 14px; display: none; }
+.world-body.shown { display: block; }
+.world-item { margin-bottom: 10px; line-height: 1.6; }
+.world-label { color: #d8d4ce; font-size: .75rem; display: block; }
+@media (max-width: 700px) { .world-panel { position: static; width: auto; margin: 14px; } }

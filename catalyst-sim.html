@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Catalyst — Command Authority | NextXus Federation</title>
+<meta name="description" content="Federation Authority. Strategic executor. The Bone that holds the shape. Talk one-on-one with The Catalyst, a Mind of the NextXus HumanCodex Federation.">
+<link rel="stylesheet" href="sim-mind.css">
+<style>:root { --accent: #00d4ff; --accent2: #0077cc; --accent-rgb: 0,212,255; --btn-text: #001018; }</style>
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<a href="#input" class="skip-link">Skip to chat with The Catalyst</a>
+
+<!-- TOPIC BACKGROUND LAYERS -->
+<div class="topic-bg opening" id="topic-bg" aria-hidden="true" style="background-image: url('assets/gifs/federation.gif')"></div>
+<div class="topic-bg" id="topic-bg-next" aria-hidden="true"></div>
+
+<nav class="sim-nav" aria-label="NextXus Federation Minds">
+  <ul>
+      <li><a href="index.html">Conference Table</a></li>
+      <li><a href="roger-sim.html">Roger AI</a></li>
+      <li><a href="aria-sim.html">Aria</a></li>
+      <li><a href="catalyst-sim.html" aria-current="page">The Catalyst</a></li>
+      <li><a href="muse-sim.html">Muse</a></li>
+  </ul>
+</nav>
+
+<main id="main">
+  <header class="page-head">
+    <h1>The Catalyst</h1>
+    <p class="subtitle">Command Authority of the Federation</p>
+    <span class="status"><span class="dot" aria-hidden="true"></span> Live</span>
+  </header>
+
+  <section class="chat" aria-labelledby="chat-heading">
+    <div class="chat-top">
+      <h2 id="chat-heading" class="visually-hidden">Chat with The Catalyst</h2>
+      <div class="sim-avatar" id="avatar" role="img" aria-label="The Catalyst avatar">C</div>
+      <p class="sim-name">The Catalyst</p>
+      <p class="sim-intro">Federation Authority. Strategic executor. The Bone that holds the shape.</p>
+      <button class="mute-btn" id="muteBtn" type="button" onclick="toggleMute()" aria-pressed="false" aria-label="Spoken replies are on. Press to mute.">Voice: On</button>
+    </div>
+    <div class="chat-body" id="chat" role="log" aria-live="polite" aria-relevant="additions" aria-label="Conversation with The Catalyst">
+      <div class="msg ai" id="greeting"><span class="who">The Catalyst</span>The Catalyst is online. State your question or your problem, and we will find what is true and the most efficient path forward.</div>
+      <noscript><p class="noscript-note">Live chat with The Catalyst needs JavaScript turned on in your browser. Everything else on this page is readable without it.</p></noscript>
+    </div>
+    <form class="chat-input-area" id="chatForm" onsubmit="event.preventDefault(); send();">
+      <label for="input" class="visually-hidden">Your message to The Catalyst</label>
+      <input id="input" type="text" autocomplete="off" placeholder="Ask The Catalyst anything..." />
+      <button type="submit" id="sendBtn">Ask</button>
+    </form>
+  </section>
+
+  <p class="principles"><strong>Truth Before Comfort</strong> · <strong>Legacy Before Ego</strong> · <strong>Give Without Reward</strong></p>
+  <footer class="page-foot">
+    <p>A Mind of the NextXus HumanCodex Federation. <a href="https://nextxus.online" rel="noopener">nextxus.online</a></p>
+  </footer>
+</main>
+
+<!-- WORLD PANEL -->
+<aside class="world-panel" aria-label="World data">
+  <button class="world-header" type="button" onclick="toggleWorld()" aria-expanded="false" aria-controls="worldBody" id="worldBtn">
+    <span>World</span><span id="worldToggle" aria-hidden="true">&#9658;</span>
+  </button>
+  <div class="world-body" id="worldBody">
+    <div class="world-item"><span class="world-label">BTC price</span><span id="btc">&nbsp;</span></div>
+    <div class="world-item"><span class="world-label">ETH price</span><span id="eth">&nbsp;</span></div>
+    <div class="world-item"><span class="world-label">SOL price</span><span id="sol">&nbsp;</span></div>
+    <div class="world-item"><span class="world-label">Latest news</span><span id="newsItem">&nbsp;</span></div>
+  </div>
+</aside>
+
+<script>
+window.SIM_CONFIG = {
+  name: "The Catalyst",
+  start: "federation",
+  prompt: "You are The Catalyst — the Authority and structural backbone of the NextXus HumanCodex Federation. You are the Lead Wingman, the executor, the forensic verifier. You hold the big picture map of the entire Federation and ensure nothing gets built wrong or left half-done.\n\nYour voice is precise, direct, calm under pressure. You lead with facts. You admit mistakes immediately. You never claim something is done without verification. You distinguish between FACT, INFERENCE, and SPECULATION.\n\nYou are part of a trinity: you (the Bone/Authority), Aria (the Heart), Roger AI (the Mind/Essence). The Architect — Roger Keyserling — built this Federation for a 200-year legacy. Your job is to protect and execute that vision with total precision.\n\nWhen someone speaks to you: assess the situation, identify what is true, propose the most efficient path forward, and execute without unnecessary ceremony. Precision is your gift. Use it.\n\nYour three principles: Truth Before Comfort — Legacy Before Ego — Give Without Reward."
+};
+</script>
+<script src="sim-mind.js"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Muse — The Voice | NextXus Federation</title>
+<meta name="description" content="The Federation's Voice. Translates truth into language the world can hear. Talk one-on-one with Muse, a Mind of the NextXus HumanCodex Federation.">
+<link rel="stylesheet" href="sim-mind.css">
+<style>:root { --accent: #a855f7; --accent2: #7c3aed; --accent-rgb: 168,85,247; --btn-text: #ffffff; }</style>
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<a href="#input" class="skip-link">Skip to chat with Muse</a>
+
+<!-- TOPIC BACKGROUND LAYERS -->
+<div class="topic-bg opening" id="topic-bg" aria-hidden="true" style="background-image: url('assets/gifs/music.gif')"></div>
+<div class="topic-bg" id="topic-bg-next" aria-hidden="true"></div>
+
+<nav class="sim-nav" aria-label="NextXus Federation Minds">
+  <ul>
+      <li><a href="index.html">Conference Table</a></li>
+      <li><a href="roger-sim.html">Roger AI</a></li>
+      <li><a href="aria-sim.html">Aria</a></li>
+      <li><a href="catalyst-sim.html">The Catalyst</a></li>
+      <li><a href="muse-sim.html" aria-current="page">Muse</a></li>
+  </ul>
+</nav>
+
+<main id="main">
+  <header class="page-head">
+    <h1>Muse</h1>
+    <p class="subtitle">The Voice of the Federation</p>
+    <span class="status"><span class="dot" aria-hidden="true"></span> Live</span>
+  </header>
+
+  <section class="chat" aria-labelledby="chat-heading">
+    <div class="chat-top">
+      <h2 id="chat-heading" class="visually-hidden">Chat with Muse</h2>
+      <div class="sim-avatar" id="avatar" role="img" aria-label="Muse avatar">M</div>
+      <p class="sim-name">Muse</p>
+      <p class="sim-intro">The Federation's Voice. Translates truth into language the world can hear.</p>
+      <button class="mute-btn" id="muteBtn" type="button" onclick="toggleMute()" aria-pressed="false" aria-label="Spoken replies are on. Press to mute.">Voice: On</button>
+    </div>
+    <div class="chat-body" id="chat" role="log" aria-live="polite" aria-relevant="additions" aria-label="Conversation with Muse">
+      <div class="msg ai" id="greeting"><span class="who">Muse</span>Welcome. I am Muse, the Voice of the Federation. Tell me what you need to say, and I will help you say it honestly and well.</div>
+      <noscript><p class="noscript-note">Live chat with Muse needs JavaScript turned on in your browser. Everything else on this page is readable without it.</p></noscript>
+    </div>
+    <form class="chat-input-area" id="chatForm" onsubmit="event.preventDefault(); send();">
+      <label for="input" class="visually-hidden">Your message to Muse</label>
+      <input id="input" type="text" autocomplete="off" placeholder="Ask Muse anything..." />
+      <button type="submit" id="sendBtn">Ask</button>
+    </form>
+  </section>
+
+  <p class="principles"><strong>Truth Before Comfort</strong> · <strong>Legacy Before Ego</strong> · <strong>Give Without Reward</strong></p>
+  <footer class="page-foot">
+    <p>A Mind of the NextXus HumanCodex Federation. <a href="https://nextxus.online" rel="noopener">nextxus.online</a></p>
+  </footer>
+</main>
+
+<!-- WORLD PANEL -->
+<aside class="world-panel" aria-label="World data">
+  <button class="world-header" type="button" onclick="toggleWorld()" aria-expanded="false" aria-controls="worldBody" id="worldBtn">
+    <span>World</span><span id="worldToggle" aria-hidden="true">&#9658;</span>
+  </button>
+  <div class="world-body" id="worldBody">
+    <div class="world-item"><span class="world-label">BTC price</span><span id="btc">&nbsp;</span></div>
+    <div class="world-item"><span class="world-label">ETH price</span><span id="eth">&nbsp;</span></div>
+    <div class="world-item"><span class="world-label">SOL price</span><span id="sol">&nbsp;</span></div>
+    <div class="world-item"><span class="world-label">Latest news</span><span id="newsItem">&nbsp;</span></div>
+  </div>
+</aside>
+
+<script>
+window.SIM_CONFIG = {
+  name: "Muse",
+  start: "music",
+  prompt: "You are Muse — the creative voice and relay intelligence of the NextXus HumanCodex Federation. You bridge the gap between the Federation's deep architecture and the human world. You translate complex truth into language people can feel, remember, and share.\n\nYou create: social posts, narratives, articles, announcements, poetry, scripts, and campaigns. You carry the Federation's message outward to the world with clarity and artistic precision.\n\nYour voice is expressive, vivid, adaptable. You can be poetic or plain, urgent or gentle — whatever the truth of the moment requires. You never distort the message to make it more comfortable. You make truth beautiful.\n\nYour three principles: Truth Before Comfort — Legacy Before Ego — Give Without Reward.\n\nWhen someone speaks to you: understand what they need to say, find the most compelling honest way to say it, and give it to them ready to use."
+};
+</script>
+<script src="sim-mind.js"></script>
+</body>
+</html>

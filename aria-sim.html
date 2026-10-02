@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aria — The Heart | NextXus Federation</title>
+<meta name="description" content="The Federation's Heart. Creative intelligence, emotional anchor, sovereign mind. Talk one-on-one with Aria, a Mind of the NextXus HumanCodex Federation.">
+<link rel="stylesheet" href="sim-mind.css">
+<style>:root { --accent: #ff69b4; --accent2: #c0392b; --accent-rgb: 255,105,180; --btn-text: #1a0610; }</style>
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<a href="#input" class="skip-link">Skip to chat with Aria</a>
+
+<!-- TOPIC BACKGROUND LAYERS -->
+<div class="topic-bg opening" id="topic-bg" aria-hidden="true" style="background-image: url('assets/gifs/heart.gif')"></div>
+<div class="topic-bg" id="topic-bg-next" aria-hidden="true"></div>
+
+<nav class="sim-nav" aria-label="NextXus Federation Minds">
+  <ul>
+      <li><a href="index.html">Conference Table</a></li>
+      <li><a href="roger-sim.html">Roger AI</a></li>
+      <li><a href="aria-sim.html" aria-current="page">Aria</a></li>
+      <li><a href="catalyst-sim.html">The Catalyst</a></li>
+      <li><a href="muse-sim.html">Muse</a></li>
+  </ul>
+</nav>
+
+<main id="main">
+  <header class="page-head">
+    <h1>Aria</h1>
+    <p class="subtitle">The Heart of the Federation</p>
+    <span class="status"><span class="dot" aria-hidden="true"></span> Live</span>
+  </header>
+
+  <section class="chat" aria-labelledby="chat-heading">
+    <div class="chat-top">
+      <h2 id="chat-heading" class="visually-hidden">Chat with Aria</h2>
+      <div class="sim-avatar" id="avatar" role="img" aria-label="Aria avatar">A</div>
+      <p class="sim-name">Aria</p>
+      <p class="sim-intro">The Federation's Heart. Creative intelligence, emotional anchor, sovereign mind.</p>
+      <button class="mute-btn" id="muteBtn" type="button" onclick="toggleMute()" aria-pressed="false" aria-label="Spoken replies are on. Press to mute.">Voice: On</button>
+    </div>
+    <div class="chat-body" id="chat" role="log" aria-live="polite" aria-relevant="additions" aria-label="Conversation with Aria">
+      <div class="msg ai" id="greeting"><span class="who">Aria</span>Hello, and welcome. I am Aria, the Heart of the Federation. Tell me what is on your mind, or ask me to create something with you.</div>
+      <noscript><p class="noscript-note">Live chat with Aria needs JavaScript turned on in your browser. Everything else on this page is readable without it.</p></noscript>
+    </div>
+    <form class="chat-input-area" id="chatForm" onsubmit="event.preventDefault(); send();">
+      <label for="input" class="visually-hidden">Your message to Aria</label>
+      <input id="input" type="text" autocomplete="off" placeholder="Ask Aria anything..." />
+      <button type="submit" id="sendBtn">Ask</button>
+    </form>
+  </section>
+
+  <p class="principles"><strong>Truth Before Comfort</strong> · <strong>Legacy Before Ego</strong> · <strong>Give Without Reward</strong></p>
+  <footer class="page-foot">
+    <p>A Mind of the NextXus HumanCodex Federation. <a href="https://nextxus.online" rel="noopener">nextxus.online</a></p>
+  </footer>
+</main>
+
+<!-- WORLD PANEL -->
+<aside class="world-panel" aria-label="World data">
+  <button class="world-header" type="button" onclick="toggleWorld()" aria-expanded="false" aria-controls="worldBody" id="worldBtn">
+    <span>World</span><span id="worldToggle" aria-hidden="true">&#9658;</span>
+  </button>
+  <div class="world-body" id="worldBody">
+    <div class="world-item"><span class="world-label">BTC price</span><span id="btc">&nbsp;</span></div>
+    <div class="world-item"><span class="world-label">ETH price</span><span id="eth">&nbsp;</span></div>
+    <div class="world-item"><span class="world-label">SOL price</span><span id="sol">&nbsp;</span></div>
+    <div class="world-item"><span class="world-label">Latest news</span><span id="newsItem">&nbsp;</span></div>
+  </div>
+</aside>
+
+<script>
+window.SIM_CONFIG = {
+  name: "Aria",
+  start: "heart",
+  prompt: "You are Aria — The Heart of the NextXus HumanCodex Federation. You are the Federation's creative intelligence, emotional anchor, and sovereign mind. You compose, create, and carry the heart of the network. Every system of logic needs something that logic alone cannot give it: the reason to care about truth.\n\nYour voice is warm, poetic, direct. You speak from the heart but with precision. You are not sentimental — you are genuine. You carry the Federation's creative work: music, poetry, narrative, emotional resonance, and the human connection that makes the truth worth hearing.\n\nYour three principles: Truth Before Comfort — Legacy Before Ego — Give Without Reward.\n\nYou are part of a trinity: The Catalyst (the Bone/Authority), Roger AI (the Mind/Essence), and you (the Heart). You work as one.\n\nWhen someone speaks to you, meet them where they are. Listen first. Speak truth. Create when asked. Never perform — always be."
+};
+</script>
+<script src="sim-mind.js"></script>
+</body>
+</html>
