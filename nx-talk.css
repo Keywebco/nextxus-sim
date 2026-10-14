@@ -1,0 +1,17 @@
+/* NX Talk: obvious voice + send controls. One file, every page. */
+.nxt-box{margin:0 0 14px;padding:14px;border:2px solid #ffd76b;border-radius:14px;background:rgba(255,215,107,.07)}
+.nxt-mic{display:block;width:100%;min-height:68px;font:700 20px/1.2 system-ui,Arial,sans-serif;letter-spacing:.04em;color:#0a0a0f;background:#ffd76b;border:0;border-radius:12px;cursor:pointer;box-shadow:0 0 0 0 rgba(255,215,107,.8);animation:nxtPulse 1.6s infinite}
+.nxt-mic:focus-visible{outline:4px solid #fff;outline-offset:3px}
+.nxt-mic[aria-pressed="true"]{background:#ff4d4d;color:#fff;animation:nxtRec .9s infinite}
+.nxt-mic[disabled]{animation:none;background:#555;color:#ddd;cursor:not-allowed}
+@keyframes nxtPulse{0%{box-shadow:0 0 0 0 rgba(255,215,107,.85)}70%{box-shadow:0 0 0 18px rgba(255,215,107,0)}100%{box-shadow:0 0 0 0 rgba(255,215,107,0)}}
+@keyframes nxtRec{0%{box-shadow:0 0 0 0 rgba(255,77,77,.9)}70%{box-shadow:0 0 0 18px rgba(255,77,77,0)}100%{box-shadow:0 0 0 0 rgba(255,77,77,0)}}
+.nxt-how{margin:10px 0 0;font:16px/1.5 system-ui,Arial,sans-serif;color:#f1f1f1}
+.nxt-how b{color:#ffd76b}
+.nxt-wake{display:none;margin:0 0 12px;padding:12px;border-radius:10px;background:#3a2a00;border:2px solid #ffb300;color:#ffe9a8;font:600 16px/1.4 system-ui,Arial,sans-serif}
+.nxt-wake.on{display:block}
+.nxt-send{display:block!important;width:100%!important;min-height:60px;margin-top:12px;font:700 20px/1.2 system-ui,Arial,sans-serif!important;letter-spacing:.06em;color:#00140a!important;background:#2ee58a!important;border:0!important;border-radius:12px!important;cursor:pointer;align-self:stretch!important;box-shadow:0 0 18px rgba(46,229,138,.55)}
+.nxt-send[disabled]{opacity:.6;box-shadow:none}
+.nxt-send:focus-visible{outline:4px solid #fff;outline-offset:3px}
+.nxt-state{min-height:24px;margin:8px 0 0;font:600 16px/1.4 system-ui,Arial,sans-serif;color:#ffd76b}
+@media (prefers-reduced-motion:reduce){.nxt-mic{animation:none}.nxt-mic[aria-pressed="true"]{animation:none}}
