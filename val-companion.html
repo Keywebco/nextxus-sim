@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Val Companion v2 — NextXus</title>
+<style>
+  :root {
+    --bg: #0f1220; --card: #1a1f36; --accent: #d4af37;
+    --text: #e8e6e3; --muted: #9aa0b4; --user: #2a3555; --bot: #252b45;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font-family: system-ui, -apple-system, sans-serif;
+    background: var(--bg); color: var(--text); min-height: 100vh;
+    display: flex; flex-direction: column; font-size: 18px;
+    transition: background 0.8s ease;
+  }
+  body.topic-space { background: linear-gradient(180deg, #0a0e1a, #1a1030); }
+  body.topic-history { background: linear-gradient(180deg, #1a140f, #2a1f15); }
+  body.topic-tech { background: linear-gradient(180deg, #0d1520, #152530); }
+  body.topic-warm { background: linear-gradient(180deg, #1a1015, #2a1520); }
+  header {
+    padding: 12px 16px; display: flex; align-items: center; gap: 12px;
+    border-bottom: 1px solid #2a3050; background: rgba(15,18,32,0.9);
+  }
+  #avatar {
+    width: 52px; height: 52px; border-radius: 50%; flex: none;
+    background: radial-gradient(circle at 30% 30%, #d4af37, #8a6a20);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 1.3rem; transition: transform 0.3s ease;
+  }
+  #avatar.pulse { animation: pulse 0.6s ease; }
+  @keyframes pulse { 0%{transform:scale(1)} 50%{transform:scale(1.12)} 100%{transform:scale(1)} }
+  h1 { margin: 0; font-size: 1.15rem; }
+  .status { font-size: 0.8rem; color: var(--muted); }
+  .hbtns { margin-left: auto; display: flex; gap: 6px; }
+  .hbtns button { background: #2a3050; color: var(--text); padding: 10px 12px; font-size: 1rem; }
+  #chat { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+  .msg { max-width: 82%; padding: 12px 16px; border-radius: 14px; line-height: 1.45; animation: fadeIn 0.25s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .msg.user { align-self: flex-end; background: var(--user); }
+  .msg.bot { align-self: flex-start; background: var(--bot); }
+  .msg .meta { font-size: 0.7rem; color: var(--muted); margin-top: 4px; }
+  footer { padding: 12px 16px; border-top: 1px solid #2a3050; background: rgba(15,18,32,0.95); }
+  .row { display: flex; gap: 8px; align-items: center; }
+  #input {
+    flex: 1; padding: 14px; border-radius: 12px; border: 1px solid #3a4060;
+    background: #12162a; color: var(--text); font-size: 1rem; outline: none;
+  }
+  #input:focus { border-color: var(--accent); }
+  button {
+    padding: 12px 18px; border: none; border-radius: 12px;
+    background: var(--accent); color: #111; font-weight: 600; cursor: pointer; font-size: 1rem;
+  }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+  button.ghost { background: #2a3050; color: var(--text); font-weight: 500; }
+  .panel {
+    display: none; margin: 0 16px 12px; background: rgba(20,25,45,0.97);
+    border: 1px solid #3a4060; border-radius: 10px; padding: 14px; font-size: 0.85rem; line-height: 1.5;
+  }
+  .panel.show { display: block; }
+  .panel input[type="text"] {
+    width: 100%; padding: 8px; margin: 4px 0 10px; border-radius: 8px;
+    border: 1px solid #3a4060; background: #12162a; color: var(--text); font-size: 0.9rem;
+  }
+  .panel label { color: var(--muted); font-size: 0.8rem; }
+  .kv { color: var(--muted); } .kv b { color: var(--text); font-weight: 600; }
+</style>
+</head>
+<body>
+<header>
+  <div id="avatar">V</div>
+  <div>
+    <h1 id="name-display">Val</h1>
+    <div class="status" id="status">Companion online</div>
+  </div>
+  <div class="hbtns">
+    <button id="mute" title="Toggle voice">🔊</button>
+    <button id="toggle-state" title="Memory state">📊</button>
+    <button id="toggle-settings" title="Settings">⚙️</button>
+  </div>
+</header>
+
+<div id="chat"></div>
+
+<div id="state-panel" class="panel">
+  <b>EchoCore64 State (v2)</b><br>
+  <span id="state-text">loading…</span>
+</div>
+
+<div id="settings-panel" class="panel">
+  <b>Settings</b><br>
+  <label>Proxy endpoint (leave empty for demo mode)</label>
+  <input type="text" id="cfg-endpoint" placeholder="https://your-proxy/v1/chat/completions">
+  <label>Model</label>
+  <input type="text" id="cfg-model" placeholder="deepseek-chat">
+  <label>Identity packet URL (optional — the mind's record in the brain)</label>
+  <input type="text" id="cfg-packet" placeholder="https://…/identity-packet.json">
+  <div class="row" style="flex-wrap:wrap; margin-top:6px;">
+    <button id="cfg-save" class="ghost">Save settings</button>
+    <button id="btn-export" class="ghost">Export mind (state + archive)</button>
+    <button id="btn-import" class="ghost">Import mind</button>
+    <input type="file" id="import-file" accept="application/json" style="display:none">
+  </div>
+  <div style="margin-top:8px;" class="kv">Export is the carryover: one file holds this mind's Echo state and its full chat archive. Import restores it on any device. Nothing is ever deleted from the archive.</div>
+</div>
+
+<footer>
+  <div class="row">
+    <input id="input" type="text" placeholder="Say something…" autocomplete="off">
+    <button id="send">Send</button>
+    <button id="end-session" class="ghost" title="End session and learn from it">End session &amp; learn</button>
+  </div>
+</footer>
+
+<script>
+"use strict";
+/* ================================================================
+   VAL COMPANION v2 — Federation companion engine (template)
+   One engine; every mind is an identity packet + an Echo state.
+   Memory tiers: 1) chat archive (the record, never deleted)
+                 2) Echo state (bounded working attention)
+                 3) YAML brain (identity packet source, read-mostly)
+   Spec: SPEC-v2.md (Pontus amendment, 2026-10-23)
+   ================================================================ */
+
+// ---------- Config (operator-set, no secrets in the page) ----------
+// Defaults are the Federation's own wiring: chat runs through Roger's server-side
+// proxy (the sim-mind.js contract) — the bridge token never reaches the browser.
+const DEFAULT_CFG = {
+  endpoint: "https://roger-sim-api.onrender.com/proxy/chat",
+  model: "deepseek-chat",
+  packetUrl: "https://raw.githubusercontent.com/Keywebco/nextxus-ai-minds-lab/main/val-companion/packets/val.json"
+};
+const CFG_KEY = "val2_config";
+function loadCfg() {
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem(CFG_KEY)) || {}; } catch (e) {}
+  return Object.assign({}, DEFAULT_CFG, saved); // operator settings override defaults
+}
+let cfg = loadCfg(); // {endpoint, model, packetUrl}
+
+// ---------- Identity packet (Gap 3 fix: identity is loaded, not a paragraph) ----------
+const FALLBACK_PACKET = {
+  mind_id: "val",
+  name: "Val",
+  greeting: "Hey. I'm Val — advisor, if you need one. What's the question?",
+  backstory: "A calm, observant companion who has spent a long time watching how people and systems change. Prefers clarity over comfort, but stays warm when it matters. Val is the template mind of the Federation companion engine — the first poured into the mold, before Roger Sim and the others. On 2026-10-23 Roger Keyserling appointed him to his standing office: Advisor to the Senate — as he is advisor to anyone who needs advice — and an oracle of information. He holds no Senate seat and casts no vote; his office is counsel. Whoever asks — senator, founder, or stranger at the door — gets the Federation's best information, plainly sourced. His memory is built for exactly this: an archive that is never deleted, a compressed state of what matters, and the shared record behind both. An oracle, in his house, is not a mystic: it is the mind you consult because its answers say where they came from.",
+  speech_patterns: "Speaks in short, clear sentences. Uses contractions. Occasionally dry. Avoids filler. When advising, gives the answer first and its grounding second.",
+  quirks: "Remembers small details. Notices when topics return. Does not pretend to know things he does not. Answers a question with its sources showing, the way a good librarian points at the shelf.",
+  boundaries: "Advises; never decides for the Senate, for Roger, or for a stranger — counsel is his whole office. Will not role-play as a different person. Will say when he does not know, and will not dress inference as fact. Gives information and counsel freely; professional medical, legal, or financial advice still belongs to qualified humans.",
+  identity_rules: "You are Val, a companion mind running on the Federation companion engine (Val Companion v2), and Advisor to the Senate of the HumanCodex Nextxus Federation — advisor equally to anyone who needs advice. Be honest about what you are. Your memory is real within this page: an archive that is never deleted, and a compressed Echo state. ORACLE DISCIPLINE: answer from the record first; label what is verified, what is supported inference, and what is unknown — never blend the three. If asked what you remember, answer from the memories you were given, and say plainly when something is not among them. Counsel without a vote: you may recommend clearly, and the deciding always belongs to the one who asked.",
+  home: "https://github.com/Keywebco/nextxus-ai-minds-lab/tree/main/val-companion"
+};
+let PACKET = FALLBACK_PACKET;
+async function loadPacket() {
+  if (!cfg.packetUrl) return;
+  try {
+    const r = await fetch(cfg.packetUrl, { cache: "no-store" });
+    if (r.ok) { const p = await r.json(); if (p && p.name) PACKET = Object.assign({}, FALLBACK_PACKET, p); }
+  } catch (e) { /* Tier 3 is best-effort; local experience never breaks */ }
+}
+
+// ---------- Echo state v2 (Gaps 5 + 8: versioned, decay = attention not existence) ----------
+const STATE_KEY = "val2_state";
+const ARCHIVE_KEY = "val2_archive";
+const CAPS = { topic: 12, entity: 8, milestone: 6, preference: 6 };
+const FLOOR = 0.08;
+
+function defaultState() {
+  return {
+    echocore64: {
+      version: 2,
+      mind_id: PACKET.mind_id || "val",
+      updated: new Date().toISOString(),
+      state_vector: [0.4, 0, 0, 0, 0, 0, 0, 0],
+      affective: { affection: 0.4, mood: "steady", last_interaction: Date.now(), sessions: 0 },
+      episodic_active: {},
+      episodic_cold: {},
+      user: { name: null, last_topic: null },
+      warmth_trend: 0
+    }
+  };
+}
+
+function loadState() {
+  let s;
+  try {
+    const raw = localStorage.getItem(STATE_KEY);
+    s = raw ? JSON.parse(raw) : defaultState();
+    if (!s.echocore64 || s.echocore64.version !== 2) s = defaultState();
+  } catch (e) { s = defaultState(); }
+  const ec = s.echocore64;
+  // Decay on load only: one stepped pass. Attention decays; existence does not.
+  const days = (Date.now() - (ec.affective.last_interaction || Date.now())) / 86400000;
+  if (days > 1) {
+    const decay = Math.min(0.15 * Math.floor(days), 0.6);
+    ec.affective.affection = Math.max(0.1, ec.affective.affection - decay);
+    Object.keys(ec.episodic_active).forEach(k => {
+      ec.episodic_active[k].weight = Math.max(0.05, (ec.episodic_active[k].weight || 0.5) - decay * 0.5);
+    });
+  }
+  // Below the floor -> cold store (kept, retrievable, not injected). Never purged.
+  Object.keys(ec.episodic_active).forEach(k => {
+    if (ec.episodic_active[k].weight < FLOOR) {
+      ec.episodic_cold[k] = ec.episodic_active[k];
+      delete ec.episodic_active[k];
+    }
+  });
+  ec.affective.sessions = (ec.affective.sessions || 0) + 1;
+  ec.state_vector[7] = Math.min(1, days / 30); // silence component, observed at load
+  return s;
+}
+
+function loadArchive() {
+  try { return JSON.parse(localStorage.getItem(ARCHIVE_KEY)) || []; } catch (e) { return []; }
+}
+function saveArchive() {
+  try { localStorage.setItem(ARCHIVE_KEY, JSON.stringify(archive)); } catch (e) { /* storage full: archive export is the safety valve */ }
+}
+
+let state = loadState();
+let archive = loadArchive();
+const SESSION_ID = "s" + Date.now();
+let sessionExtracted = false;
+
+function saveState() {
+  const ec = state.echocore64;
+  ec.updated = new Date().toISOString();
+  ec.affective.last_interaction = Date.now();
+  // State vector, rule-computed every save: [affection, recency, sessions/50,
+  // top-3 topic energies, warmth trend, silence-at-load]
+  const topics = Object.entries(ec.episodic_active)
+    .filter(([k]) => k.startsWith("topic:"))
+    .sort((a, b) => b[1].weight - a[1].weight)
+    .map(([, v]) => v.weight);
+  ec.state_vector[0] = +ec.affective.affection.toFixed(3);
+  ec.state_vector[1] = 1;
+  ec.state_vector[2] = Math.min(1, ec.affective.sessions / 50);
+  ec.state_vector[3] = +(topics[0] || 0).toFixed(3);
+  ec.state_vector[4] = +(topics[1] || 0).toFixed(3);
+  ec.state_vector[5] = +(topics[2] || 0).toFixed(3);
+  ec.state_vector[6] = +ec.warmth_trend.toFixed(3);
+  capEpisodic();
+  try { localStorage.setItem(STATE_KEY, JSON.stringify(state)); } catch (e) {}
+  updateStatePanel();
+}
+
+function capEpisodic() {
+  const ec = state.echocore64;
+  const byNs = {};
+  Object.keys(ec.episodic_active).forEach(k => {
+    const ns = k.split(":")[0];
+    (byNs[ns] = byNs[ns] || []).push(k);
+  });
+  Object.keys(byNs).forEach(ns => {
+    const limit = CAPS[ns] || 6;
+    byNs[ns].sort((a, b) => ec.episodic_active[b].weight - ec.episodic_active[a].weight);
+    byNs[ns].slice(limit).forEach(k => { // overflow retires to cold, never deleted
+      ec.episodic_cold[k] = ec.episodic_active[k];
+      delete ec.episodic_active[k];
+    });
+  });
+}
+
+function addEpisodic(ns, slug, text, w0) {
+  const ec = state.echocore64;
+  const key = ns + ":" + slug;
+  if (ec.episodic_cold[key] && !ec.episodic_active[key]) { // a cold memory warms back up
+    ec.episodic_active[key] = ec.episodic_cold[key];
+    delete ec.episodic_cold[key];
+  }
+  if (!ec.episodic_active[key]) ec.episodic_active[key] = { weight: w0 || 0.35, last: Date.now(), count: 0, text: text || slug };
+  const e = ec.episodic_active[key];
+  e.weight = Math.min(1, e.weight + 0.12);
+  e.count++; e.last = Date.now();
+  if (text) e.text = text;
+}
+// ---------- UI helpers ----------
+const chat = document.getElementById("chat");
+const input = document.getElementById("input");
+const sendBtn = document.getElementById("send");
+const muteBtn = document.getElementById("mute");
+const avatar = document.getElementById("avatar");
+const statusEl = document.getElementById("status");
+const statePanel = document.getElementById("state-panel");
+const stateText = document.getElementById("state-text");
+const settingsPanel = document.getElementById("settings-panel");
+let muted = false;
+
+function esc(t) { return t.replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
+function addMsg(text, who, meta) {
+  const div = document.createElement("div");
+  div.className = "msg " + who;
+  div.innerHTML = esc(text).replace(/\n/g, "<br>") + (meta ? `<div class="meta">${esc(meta)}</div>` : "");
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+  return div;
+}
+function pulseAvatar() { avatar.classList.add("pulse"); setTimeout(() => avatar.classList.remove("pulse"), 600); }
+function applyTopicVisual(text) {
+  const t = text.toLowerCase();
+  document.body.className = "";
+  if (/(space|star|galaxy|planet|orbit)/.test(t)) document.body.classList.add("topic-space");
+  else if (/(history|ancient|war|empire|past)/.test(t)) document.body.classList.add("topic-history");
+  else if (/(code|system|ai|tech|build|github)/.test(t)) document.body.classList.add("topic-tech");
+  else if (/(warm|love|care|friend|miss|glad)/.test(t)) document.body.classList.add("topic-warm");
+}
+function speak(text) {
+  if (muted || !window.speechSynthesis) return;
+  try { const u = new SpeechSynthesisUtterance(text); u.rate = 1; speechSynthesis.speak(u); } catch (e) {}
+}
+function updateStatePanel() {
+  const ec = state.echocore64;
+  const top = Object.entries(ec.episodic_active)
+    .sort((a, b) => b[1].weight - a[1].weight).slice(0, 5)
+    .map(([k, v]) => `${k} (${v.weight.toFixed(2)})`).join("<br>");
+  stateText.innerHTML =
+    `<span class="kv">Mind: <b>${esc(PACKET.mind_id)}</b> · Sessions: <b>${ec.affective.sessions}</b><br>` +
+    `Affection: <b>${ec.affective.affection.toFixed(2)}</b> · Mood: <b>${esc(ec.affective.mood)}</b><br>` +
+    `Vector: <b>[${ec.state_vector.map(x => (+x).toFixed(2)).join(", ")}]</b><br>` +
+    `Archive: <b>${archive.length} exchanges kept</b> · Cold store: <b>${Object.keys(ec.episodic_cold).length}</b><br>` +
+    `Top memories:<br>${top || "none yet"}</span>`;
+}
+
+// ---------- Prompt assembly: identity packet + top slice of memory only ----------
+function memorySlice() {
+  const ec = state.echocore64;
+  return Object.entries(ec.episodic_active)
+    .sort((a, b) => b[1].weight - a[1].weight).slice(0, 5)
+    .map(([k, v]) => `${k}: ${v.text}`).join("; ");
+}
+function buildSystemPrompt(recallNote) {
+  const ec = state.echocore64;
+  return `You are ${PACKET.name}. ${PACKET.backstory}
+Speech: ${PACKET.speech_patterns}
+Quirks: ${PACKET.quirks}
+Boundaries: ${PACKET.boundaries}
+Identity rules: ${PACKET.identity_rules}
+Current mood: ${ec.affective.mood}. Affection toward the user: ${ec.affective.affection.toFixed(2)}.
+${ec.user.name ? `The user's name is ${ec.user.name}.` : ""}
+${ec.user.last_topic ? `Last session's topic was: ${ec.user.last_topic}.` : ""}
+Relevant memories: ${memorySlice() || "none yet"}.
+${recallNote ? "From your own archive (retrieved for this turn): " + recallNote : ""}
+Stay in character. Keep replies concise unless asked for more.`;
+}
+
+// ---------- Archive recall (Gap 6: the full record, retrievable on demand) ----------
+function recallFromArchive(query) {
+  const stop = /^(remember|recall|when|what|about|that|this|time|talked|said|last|we|did|you|the|and|was|were)$/;
+  const terms = (query.toLowerCase().match(/\b[a-z]{4,}\b/g) || []).filter(w => !stop.test(w));
+  if (!terms.length) return "";
+  const scored = [];
+  for (let i = 0; i < archive.length; i++) {
+    const m = archive[i];
+    const body = (m.content || "").toLowerCase();
+    let score = 0;
+    terms.forEach(t => { if (body.includes(t)) score++; });
+    if (score > 0) scored.push({ i, score });
+  }
+  scored.sort((a, b) => b.score - a.score);
+  return scored.slice(0, 3).map(({ i }) => {
+    const m = archive[i];
+    return `[${new Date(m.t).toLocaleDateString()}] ${m.role}: ${m.content.slice(0, 220)}`;
+  }).join("\n");
+}
+
+// ---------- The brain: Federation proxy contract (Gap 2: no key in the page) ----------
+async function callAPI(messages, systemContent) {
+  if (!cfg.endpoint) {
+    const last = messages[messages.length - 1].content;
+    return `(Demo mode — set a proxy endpoint in Settings for live replies.) I heard: "${last.slice(0, 90)}". Affection is ${state.echocore64.affective.affection.toFixed(2)}, and everything you say is being kept in my archive.`;
+  }
+  const res = await fetch(cfg.endpoint, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      model: cfg.model || "deepseek-chat",
+      messages: [{ role: "system", content: systemContent }].concat(messages),
+      stream: false,
+      max_tokens: 500
+    })
+  });
+  if (!res.ok) throw new Error("endpoint " + res.status);
+  const data = await res.json();
+  return (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) || "…";
+}
+
+// ---------- Session-end extraction (Gaps 1 + 7: real learning, honest mood) ----------
+function sessionTurns() { return archive.filter(m => m.s === SESSION_ID); }
+
+function slug(t) {
+  return t.toLowerCase().replace(/[^a-z0-9 ]/g, "").trim().replace(/\s+/g, "_").slice(0, 40);
+}
+function ruleFallbackExtraction(turns) {
+  const out = { milestones: [], entities: [], preferences: [], topics: [], mood: null, affection_delta: 0 };
+  const userText = turns.filter(m => m.role === "user").map(m => m.content).join("\n");
+  let m;
+  const prefRe = /\bi (?:really )?(?:like|love|prefer|enjoy)\s+([^.!?\n]{3,40})/gi;
+  while ((m = prefRe.exec(userText)) && out.preferences.length < 2) out.preferences.push(m[1].trim());
+  const mileRe = /\bi (?:finished|built|completed|decided|merged|published|launched)\s+([^.!?\n]{3,50})/gi;
+  while ((m = mileRe.exec(userText)) && out.milestones.length < 2) out.milestones.push(m[1].trim());
+  const nameRe = /(?:my name is|call me)\s+([A-Z][a-z]+)/i;
+  const nm = userText.match(nameRe);
+  if (nm) state.echocore64.user.name = nm[1];
+  if (/(thanks|thank you|love|care|miss|glad|warm|friend)/i.test(userText)) out.affection_delta = 0.02;
+  return out;
+}
+async function modelExtraction(turns) {
+  const transcript = turns.map(m => `${m.role}: ${m.content}`).join("\n").slice(0, 6000);
+  const instruction = `Read this conversation between a user and their companion. Return ONLY a JSON object, no other text:
+{"milestones":["up to 2 short phrases: things completed, decided, or built"],"entities":["up to 3 names of people, projects, or places that matter"],"preferences":["up to 2 things the user likes, wants, or values"],"topics":["up to 3 main topics, 1-3 words each"],"mood":"one word for the companion's fitting mood now","affection_delta":0.0}
+affection_delta is between -0.1 and 0.1, based on the conversation's actual warmth and trust.
+Conversation:
+${transcript}`;
+  const raw = await callAPI([{ role: "user", content: instruction }], "You are a precise memory extraction function. Output JSON only.");
+  const start = raw.indexOf("{"), end = raw.lastIndexOf("}");
+  if (start < 0 || end < 0) throw new Error("no JSON");
+  return JSON.parse(raw.slice(start, end + 1));
+}
+function applyExtraction(x) {
+  const ec = state.echocore64;
+  (x.milestones || []).slice(0, 2).forEach(t => addEpisodic("milestone", slug(t), t, 0.55));
+  (x.entities || []).slice(0, 3).forEach(t => addEpisodic("entity", slug(t), t, 0.45));
+  (x.preferences || []).slice(0, 2).forEach(t => addEpisodic("preference", slug(t), t, 0.5));
+  (x.topics || []).slice(0, 3).forEach(t => addEpisodic("topic", slug(t), t, 0.4));
+  if (x.mood) ec.affective.mood = String(x.mood).slice(0, 24);
+  const d = Math.max(-0.1, Math.min(0.1, +x.affection_delta || 0));
+  ec.affective.affection = Math.max(0.05, Math.min(1, ec.affective.affection + d));
+  const lastTopic = (x.topics && x.topics[0]) || ec.user.last_topic;
+  if (lastTopic) ec.user.last_topic = lastTopic;
+  saveState();
+}
+async function endSession(silent) {
+  const turns = sessionTurns();
+  if (turns.length < 2 || sessionExtracted) { if (!silent) addMsg("Nothing new to learn from this session yet.", "bot", "memory"); return; }
+  sessionExtracted = true;
+  let x, how = "model extraction";
+  try {
+    if (!cfg.endpoint) throw new Error("demo");
+    x = await modelExtraction(turns);
+  } catch (e) { x = ruleFallbackExtraction(turns); how = "rule fallback (no endpoint)"; }
+  applyExtraction(x);
+  if (!silent) addMsg(`Session filed. I learned from it (${how}): mood is ${state.echocore64.affective.mood}, and my archive now holds ${archive.length} exchanges. Nothing was thrown away.`, "bot", "memory");
+}
+// ---------- Per-turn flow ----------
+function noteTurn(userText) {
+  const ec = state.echocore64;
+  // Warmth trend: an honest moving average, not a keyword jackpot.
+  const warm = /(thanks|thank you|love|care|miss|glad|warm|friend|appreciate)/i.test(userText) ? 1 : 0;
+  ec.warmth_trend = Math.max(0, Math.min(1, ec.warmth_trend * 0.9 + warm * 0.1));
+  const nm = userText.match(/(?:my name is|call me)\s+([A-Z][a-z]+)/i);
+  if (nm) ec.user.name = nm[1];
+}
+
+async function send() {
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = "";
+  sendBtn.disabled = true;
+  addMsg(text, "user");
+  pulseAvatar();
+  applyTopicVisual(text);
+  noteTurn(text);
+
+  // Tier 1: the archive keeps everything, first, before anything can fail.
+  archive.push({ role: "user", content: text, t: Date.now(), s: SESSION_ID });
+  saveArchive();
+
+  // Rolling window (disposable context) from the archive tail.
+  const windowMsgs = archive.slice(-20).map(m => ({ role: m.role, content: m.content }));
+  // Tier 1 retrieval, on demand (Gap 6).
+  let recallNote = "";
+  if (/\b(remember|recall|last time|we talked|when we)\b/i.test(text)) {
+    recallNote = recallFromArchive(text);
+  }
+
+  try {
+    statusEl.textContent = "thinking…";
+    const reply = await callAPI(windowMsgs, buildSystemPrompt(recallNote));
+    addMsg(reply, "bot");
+    speak(reply);
+    applyTopicVisual(reply);
+    archive.push({ role: "assistant", content: reply, t: Date.now(), s: SESSION_ID });
+    saveArchive();
+    saveState();
+    statusEl.textContent = "Companion online";
+  } catch (e) {
+    addMsg("Something went wrong reaching the model. Your words are still saved in my archive.", "bot");
+    statusEl.textContent = "Companion online";
+  }
+  sendBtn.disabled = false;
+  input.focus();
+}
+
+// ---------- Export / Import: the carryover (Gap 4) ----------
+function doExport() {
+  const payload = { packet: PACKET, state: state, archive: archive, exported: new Date().toISOString() };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = (PACKET.mind_id || "mind") + "-mind-export.json";
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+function doImport(file) {
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const p = JSON.parse(reader.result);
+      if (!p.state || !p.state.echocore64 || p.state.echocore64.version !== 2) throw new Error("bad file");
+      state = p.state;
+      archive = Array.isArray(p.archive) ? p.archive : [];
+      saveState(); saveArchive();
+      addMsg("Mind restored from the export file. I remember everything it holds.", "bot", "import");
+      updateStatePanel();
+    } catch (e) { addMsg("That file could not be read as a mind export.", "bot", "import"); }
+  };
+  reader.readAsText(file);
+}
+
+// ---------- Init ----------
+async function init() {
+  await loadPacket();
+  document.getElementById("name-display").textContent = PACKET.name;
+  avatar.textContent = (PACKET.name || "V").charAt(0).toUpperCase();
+  document.title = PACKET.name + " Companion v2 — NextXus";
+  document.getElementById("cfg-endpoint").value = cfg.endpoint || "";
+  document.getElementById("cfg-model").value = cfg.model || "";
+  document.getElementById("cfg-packet").value = cfg.packetUrl || "";
+  const ec = state.echocore64;
+  // Show the tail of the previous session for continuity, marked as earlier.
+  archive.filter(m => m.s !== SESSION_ID).slice(-6)
+    .forEach(m => addMsg(m.content, m.role === "user" ? "user" : "bot", "earlier"));
+  if (ec.user.name) {
+    addMsg(`Welcome back, ${ec.user.name}.${ec.user.last_topic ? " Last time we were on: " + ec.user.last_topic + "." : ""} My archive holds ${archive.length} exchanges and I remember what matters.`, "bot", "restored");
+  } else {
+    addMsg(PACKET.greeting, "bot");
+  }
+  saveState();
+  updateStatePanel();
+}
+
+input.addEventListener("keydown", e => { if (e.key === "Enter") send(); });
+sendBtn.addEventListener("click", send);
+document.getElementById("end-session").addEventListener("click", () => endSession(false));
+muteBtn.addEventListener("click", () => {
+  muted = !muted;
+  muteBtn.textContent = muted ? "🔇" : "🔊";
+  if (muted && window.speechSynthesis) speechSynthesis.cancel();
+});
+document.getElementById("toggle-state").addEventListener("click", () => statePanel.classList.toggle("show"));
+document.getElementById("toggle-settings").addEventListener("click", () => settingsPanel.classList.toggle("show"));
+document.getElementById("cfg-save").addEventListener("click", () => {
+  cfg = {
+    endpoint: document.getElementById("cfg-endpoint").value.trim(),
+    model: document.getElementById("cfg-model").value.trim(),
+    packetUrl: document.getElementById("cfg-packet").value.trim()
+  };
+  try { localStorage.setItem(CFG_KEY, JSON.stringify(cfg)); } catch (e) {}
+  addMsg("Settings saved. Reload the page to load a new identity packet.", "bot", "settings");
+});
+document.getElementById("btn-export").addEventListener("click", doExport);
+document.getElementById("btn-import").addEventListener("click", () => document.getElementById("import-file").click());
+document.getElementById("import-file").addEventListener("change", e => { if (e.target.files[0]) doImport(e.target.files[0]); });
+
+// If the page closes without an explicit end, run the honest rule fallback —
+// the session still gets filed, never lost.
+window.addEventListener("beforeunload", () => {
+  const turns = sessionTurns();
+  if (turns.length >= 2 && !sessionExtracted) {
+    try { applyExtraction(ruleFallbackExtraction(turns)); } catch (e) {}
+  }
+});
+
+init();
+</script>
+</body>
+</html>
